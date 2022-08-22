@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0202a3095b7477a4091d56344f0af6b3, type: 3}
+  m_Name: TestCharacterDialogueTreeGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: TestCharacterDialogueTree
+  <Groups>k__BackingField:
+  - <ID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <Name>k__BackingField: Basic
+    <Position>k__BackingField: {x: -762, y: -74}
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: d05be50e-299f-468e-b970-18f3b7441afd
+    <Name>k__BackingField: Green
+    <Text>k__BackingField: You picked green!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1763, y: 176}
+  - <ID>k__BackingField: 2b4812a7-93f5-4c61-92a2-be7d606ecef3
+    <Name>k__BackingField: Red
+    <Text>k__BackingField: You picked red!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1763, y: -15}
+  - <ID>k__BackingField: 896af481-2c1a-4f79-b6d4-03f551792f28
+    <Name>k__BackingField: Blue
+    <Text>k__BackingField: You picked blue!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1763, y: 367}
+  - <ID>k__BackingField: dd7a80f4-d071-473c-a2cc-c89de2fe547f
+    <Name>k__BackingField: Gold
+    <Text>k__BackingField: Praise the sun!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1763, y: 558}
+  - <ID>k__BackingField: d1f71d46-d7a2-4499-9fbb-81b327a6f072
+    <Name>k__BackingField: Black
+    <Text>k__BackingField: Embrace the dark...
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1763, y: 749}
+  - <ID>k__BackingField: 4689b08c-ee4c-432b-9ae8-f7f97fefa127
+    <Name>k__BackingField: Selection
+    <Text>k__BackingField: Choose a color.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Red
+      <NodeID>k__BackingField: 2b4812a7-93f5-4c61-92a2-be7d606ecef3
+    - <Text>k__BackingField: Green
+      <NodeID>k__BackingField: d05be50e-299f-468e-b970-18f3b7441afd
+    - <Text>k__BackingField: Blue
+      <NodeID>k__BackingField: 896af481-2c1a-4f79-b6d4-03f551792f28
+    - <Text>k__BackingField: Gold
+      <NodeID>k__BackingField: dd7a80f4-d071-473c-a2cc-c89de2fe547f
+    - <Text>k__BackingField: Black
+      <NodeID>k__BackingField: d1f71d46-d7a2-4499-9fbb-81b327a6f072
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1376, y: 281}
+  - <ID>k__BackingField: 30c351e6-f92e-4dcd-b64a-4dc9bf03940c
+    <Name>k__BackingField: Initial
+    <Text>k__BackingField: Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+      accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo
+      inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 9f5062a4-d4d8-402d-80d2-f0fabeb5ba8d
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -737, y: -15}
+  - <ID>k__BackingField: 9f5062a4-d4d8-402d-80d2-f0fabeb5ba8d
+    <Name>k__BackingField: Part2
+    <Text>k__BackingField: Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur
+      aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem
+      sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit,
+      amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt,
+      ut labore et dolore magnam aliquam quaerat voluptatem.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 84e407d0-8981-4e9a-b704-05e6c24c6c94
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -95, y: -15}
+  - <ID>k__BackingField: 84e407d0-8981-4e9a-b704-05e6c24c6c94
+    <Name>k__BackingField: Part3
+    <Text>k__BackingField: Ut enim ad minima veniam, quis nostrum exercitationem
+      ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+      Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam
+      nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas
+      nulla pariatur?
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 009202dd-1b9e-4605-8740-0afcc60dfe7e
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 547, y: -15}
+  - <ID>k__BackingField: 009202dd-1b9e-4605-8740-0afcc60dfe7e
+    <Name>k__BackingField: Part4
+    <Text>k__BackingField: At vero eos et accusamus et iusto odio dignissimos ducimus,
+      qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores
+      et quas molestias excepturi sint, obcaecati cupiditate non provident, similique
+      sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum
+      fuga. Et harum quidem rerum facilis est et expedita distinctio.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: dd14ac2b-0206-4bdb-ae91-e3f5a74b7537
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -737, y: 323}
+  - <ID>k__BackingField: dd14ac2b-0206-4bdb-ae91-e3f5a74b7537
+    <Name>k__BackingField: Part5
+    <Text>k__BackingField: Nam libero tempore, cum soluta nobis est eligendi optio,
+      cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis
+      voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam
+      et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates
+      repudiandae sint et molestiae non recusandae.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 3c33a92a-5a3e-402a-849d-3b0392b26a9f
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -95, y: 323}
+  - <ID>k__BackingField: 3c33a92a-5a3e-402a-849d-3b0392b26a9f
+    <Name>k__BackingField: Part6
+    <Text>k__BackingField: Itaque earum rerum hic tenetur a sapiente delectus, ut
+      aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus
+      asperiores repellat.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 4689b08c-ee4c-432b-9ae8-f7f97fefa127
+    <GroupID>k__BackingField: 66a4dcee-6c36-46f9-901c-c5ab648f62d7
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 547, y: 323}
+  <OldGroupNames>k__BackingField:
+  - Basic
+  <OldUngroupedNodeNames>k__BackingField: []
+  <OldGroupedNodeNames>k__BackingField:
+    list:
+    - Key: Basic
+      Value:
+      - Green
+      - Red
+      - Blue
+      - Gold
+      - Black
+      - Selection
+      - Initial
+      - Part2
+      - Part3
+      - Part4
+      - Part5
+      - Part6

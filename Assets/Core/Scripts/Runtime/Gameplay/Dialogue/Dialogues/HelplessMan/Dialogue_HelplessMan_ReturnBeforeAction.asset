@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30401b224484d819c6732f41df1a7bf, type: 3}
+  m_Name: Dialogue_HelplessMan_ReturnBeforeAction
+  m_EditorClassIdentifier: 
+  _preDialogue:
+  - '*cough*'
+  _dialogueText: Please... are you gonna help me?
+  _dialogueOptions:
+  - optionText: Give essence. (-1 Red Essence)
+    optionDialogue: {fileID: 11400000, guid: ca548ab54b2fa854cb5c0801053012f2, type: 2}
+  - optionText: '[Leave]'
+    optionDialogue: {fileID: 0}
+  _isCheckpoint: 0
+  _checkpointDialogue: {fileID: 0}

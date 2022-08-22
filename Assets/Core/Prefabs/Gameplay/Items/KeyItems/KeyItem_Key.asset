@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd1740554149b683fef8c4026cd25e, type: 3}
+  m_Name: KeyItem_Key
+  m_EditorClassIdentifier: 
+  _name: Chest Key
+  _shortDescription: Iron key that opens a chest.
+  _longDescription: This is where the item's long description is written.
+  _maxStack: 1
+  _isStackable: 0
+  _isDiscardable: 0
+  _isSellable: 0
+  _weight: 0
+  _value: 0
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}

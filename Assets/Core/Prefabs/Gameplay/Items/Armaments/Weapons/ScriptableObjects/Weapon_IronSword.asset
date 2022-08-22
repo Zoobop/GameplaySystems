@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d23e1980f1f44ada814c82c55302e2f, type: 3}
+  m_Name: Weapon_IronSword
+  m_EditorClassIdentifier: 
+  _name: Iron Sword
+  _shortDescription: This is an iron sword.
+  _longDescription: This is where the item's long description is written.
+  _maxStack: 1
+  _isStackable: 0
+  _isDiscardable: 1
+  _isSellable: 1
+  _weight: 0
+  _value: 0
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30401b224484d819c6732f41df1a7bf, type: 3}
+  m_Name: Dialogue_HelplessMan_ReturnAfterAction
+  m_EditorClassIdentifier: 
+  _preDialogue:
+  - Don't blame me for your problems. I do what I have to do to survive out here.
+  _dialogueText: Now, get away from me!
+  _dialogueOptions:
+  - optionText: '[Leave]'
+    optionDialogue: {fileID: 0}
+  _isCheckpoint: 0
+  _checkpointDialogue: {fileID: 0}

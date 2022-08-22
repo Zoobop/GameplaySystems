@@ -1,0 +1,4 @@
+repository "Survivor@Zoobop@cloud"
+  path "/"
+    br "/main"
+    co "/main"

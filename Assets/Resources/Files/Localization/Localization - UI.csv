@@ -1,0 +1,14 @@
+key,en,jp
+ui_interaction_press,Press,
+ui_interaction_interact,To Interact,をプレスして
+ui_interaction_leave,Leave,戻る
+ui_interaction_dialogue,Talk,話す
+ui_interaction_inventory,Inventory,インベントリ
+ui_interaction_party_add,Add To Party,パーティーに加える
+ui_interaction_party_remove,Remove From Party,パーティから外す
+ui_interaction_partyleader,Change Character,チャラを変わる
+ui_time_day,Day,日
+ui_time_morning,Morning,朝日
+ui_time_midday,Midday,昼日
+ui_time_evening,Evening,夕方
+ui_time_midnight,Midnight,夜半

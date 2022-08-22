@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d9a53541509914aa505d8ed3c18ce8, type: 3}
+  m_Name: Passive_AdrenalineRush
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _name: Adrenaline Rush
+  _description: Grants the effected with an increase in strength and agility.
+  _cost: 1
+  _events:
+    m_PersistentCalls:
+      m_Calls: []

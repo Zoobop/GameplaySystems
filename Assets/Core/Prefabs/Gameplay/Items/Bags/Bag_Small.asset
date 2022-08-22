@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eda6f2aa0e44521899812872390b19b, type: 3}
+  m_Name: Bag_Small
+  m_EditorClassIdentifier: 
+  _name: Small Bag
+  _description: This is small bag.
+  _maxStack: 1
+  _isStackable: 0
+  _isDiscardable: 1
+  _isSellable: 1
+  _weight: 5
+  _value: 0
+  _prefab: {fileID: 6759407808896754054, guid: 0fb79a389775dbe43a3d36b2ed9570fc, type: 3}
+  _weightLimit: 30
