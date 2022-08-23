@@ -53,10 +53,24 @@ namespace ExternalEnvironment
 
         #endregion
 
+        public void StopCycle()
+        {
+            StopCoroutine(_coroutine);
+        }
+
+        public void StartCycle()
+        {
+            _coroutine = StartCoroutine(Cycle());
+        }
+        
         private IEnumerator Cycle()
         {
             var startEulerAngles = new Vector3(0f, -_sun.transform.rotation.eulerAngles.y, 0f);
             var endEulerAngles = new Vector3(359.999f, startEulerAngles.y, 0f);
+
+            const float intensityChangeTime = MaxTime * 0.25f;
+            const float startIntensity = 1.5f;
+            const float endIntensity = 0f;
             
             const float timeIncrement = .005f;
             while (_sun is not null)
@@ -73,18 +87,22 @@ namespace ExternalEnvironment
 
                 // Set correct time region
                 _timeRegion = GetTimeRegion(_time);
+
+                var intensityTime = ((_time + intensityChangeTime * 0.5f) % intensityChangeTime + 1) / intensityChangeTime;
+                if (_timeRegion == TimeRegion.Evening)
+                {
+                    // Decrease intensity
+                    _sun.intensity = Mathf.Lerp(startIntensity, endIntensity, intensityTime);
+                }
+                else if (_timeRegion == TimeRegion.Morning)
+                {
+                    // Increase intensity
+                    _sun.intensity = Mathf.Lerp(endIntensity, startIntensity, intensityTime);
+                }
+                
+                
                 yield return _tickDelay;
             }
-        }
-
-        public void StopCycle()
-        {
-            StopCoroutine(_coroutine);
-        }
-
-        public void StartCycle()
-        {
-            _coroutine = StartCoroutine(Cycle());
         }
 
         public static TimeRegion GetTimeRegion(float time)

@@ -8,9 +8,10 @@ namespace InteractionSystem
     
     public abstract class Interaction : MonoBehaviour, IInteraction
     {
-        [Header("Events")] [SerializeField] private UnityEvent _onStarted;
+        [Header("Events")] 
+        [SerializeField] private UnityEvent _onStarted;
         [SerializeField] private UnityEvent _onEnded;
-
+        
         private bool _isActive = true;
 
         public event Action OnStarted = delegate { };

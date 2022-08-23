@@ -10,7 +10,7 @@ namespace Entity.InventorySystem
     public class Inventory : MonoBehaviour, IInventory
     {
         [SerializeField] protected List<ItemSlot> _items = new();
-        [ReadOnly] [SerializeField] protected float _totalWeight = 0f;
+        [SerializeField] protected float _totalWeight = 0f;
 
         protected IDictionary<Item, int> _itemsDictionary = new Dictionary<Item, int>();
 

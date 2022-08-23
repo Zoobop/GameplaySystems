@@ -8,7 +8,7 @@ namespace Entity.InventorySystem
         protected Transform _bagHolder;
 
         [SerializeField] protected Bag _bag;
-        [SerializeField, ReadOnly] protected float _weightLimit;
+        [SerializeField] protected float _weightLimit;
 
         private GameObject _bagObject;
 

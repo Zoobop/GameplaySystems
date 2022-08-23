@@ -1,5 +1,7 @@
 ﻿
 
+using UnityEngine;
+
 namespace InteractionSystem
 {
     using Entity;
@@ -10,18 +12,18 @@ namespace InteractionSystem
 
     public class InventoryInteraction : Interaction
     {
-        protected IInventory _inventory;
+        [SerializeField] protected Inventory _inventory;
 
         #region UnityEvents
 
         protected virtual void Awake()
         {
-            _inventory = transform.parent.GetComponentInChildren<IInventory>();
+            _inventory = transform.parent.GetComponentInChildren<IInventory>() as Inventory;
         }
 
         protected virtual void OnValidate()
         {
-            _inventory = transform.parent.GetComponentInChildren<IInventory>();
+            _inventory = transform.parent.GetComponentInChildren<IInventory>() as Inventory;
         }
 
         protected virtual void Start()
@@ -40,7 +42,7 @@ namespace InteractionSystem
 
         public override bool MeetsCondition(in ICharacter character)
         {
-            return _inventory != null;
+            return _inventory is not null;
         }
 
         public override string GetPrimaryInteractionText()

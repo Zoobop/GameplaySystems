@@ -13,7 +13,7 @@ namespace Entity
     [Serializable]
     public class StatAttributeElement
     {
-        [SerializeField, ReadOnly] private StatAttributeType _statType;
+        [SerializeField] private StatAttributeType _statType;
         [SerializeField] private string _statName;
         [SerializeField] private int _minimumAmount;
         [SerializeField] private int _currentAmount;

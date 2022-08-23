@@ -12,7 +12,7 @@ namespace Entity.InventorySystem
         [Tooltip("The current amount of this item.")] [SerializeField]
         private int _amount;
 
-        [ReadOnly, Tooltip("The max stack of this item.")] [SerializeField]
+        [Tooltip("The max stack of this item.")] [SerializeField]
         private int _maxStack;
 
         public Item Item

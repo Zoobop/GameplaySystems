@@ -305,6 +305,7 @@ MonoBehaviour:
   _onEnded:
     m_PersistentCalls:
       m_Calls: []
+  _inventory: {fileID: 6418132269905132364}
 --- !u!114 &7214980500939661726
 MonoBehaviour:
   m_ObjectHideFlags: 0

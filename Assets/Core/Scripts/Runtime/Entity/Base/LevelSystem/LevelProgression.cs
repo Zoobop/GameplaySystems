@@ -10,7 +10,7 @@ namespace Entity
         protected StatAttributeElement _xpStatElement = new(StatAttributeType.Xp, "Experience", 0, 550);
 
         [Min(0)] [SerializeField] private int _level;
-        [SerializeField, ReadOnly] private int _totalXp;
+        [SerializeField] private int _totalXp;
 
         public int CurrentLevel => _level;
         public int TotalXp => _totalXp;
