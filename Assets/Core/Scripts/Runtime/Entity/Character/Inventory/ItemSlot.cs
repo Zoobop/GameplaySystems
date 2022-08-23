@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Entity.InventorySystem
 {
+    using Item;
+    
     [Serializable]
     public class ItemSlot
     {

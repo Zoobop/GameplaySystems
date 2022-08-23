@@ -7,6 +7,7 @@ namespace UI
 {
     using Entity;
     using Entity.InventorySystem;
+    using Entity.Item;
     using Utility.ExtensionMethods;
     
     public class InventoryWindow : MonoBehaviour, IWindow

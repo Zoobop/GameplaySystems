@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-using Entity;
-
 namespace DialogueSystem
 {
+    using Entity;
+    using Entity.Item;
+    
     public class SingleItemRequirement : DialogueRequirement
     {
         [Header("Required Item")] 

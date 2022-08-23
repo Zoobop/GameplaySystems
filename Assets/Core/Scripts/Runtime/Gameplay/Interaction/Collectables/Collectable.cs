@@ -2,8 +2,7 @@
 
 namespace InteractionSystem
 {
-
-    using Entity;
+    using Entity.Item;
 
     public struct ItemPack
     {

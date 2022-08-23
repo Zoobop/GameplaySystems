@@ -2,6 +2,8 @@
 
 namespace Entity.InventorySystem
 {
+    using Item;
+    
     [CreateAssetMenu(menuName = "Items/Bag", fileName = "Bag_")]
     public class Bag : Item
     {

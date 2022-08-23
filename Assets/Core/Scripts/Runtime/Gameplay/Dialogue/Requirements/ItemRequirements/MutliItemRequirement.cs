@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Entity;
-
 namespace DialogueSystem
 {
+    using Entity;
+    using Entity.Item;
+    
     public class MultiItemRequirement : DialogueRequirement
     {
         [Serializable]

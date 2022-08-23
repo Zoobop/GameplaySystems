@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Entity
+namespace Entity.Item
 {
     [CreateAssetMenu(menuName = "Items/Key Item", fileName = "KeyItem_")]
     public class KeyItem : Item

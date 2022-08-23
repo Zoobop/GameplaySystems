@@ -4,6 +4,7 @@ using UnityEngine;
 namespace InteractionSystem
 {
     using Entity;
+    using Entity.Item;
 
     [Serializable]
     public class RequiredItem : UnlockCondition

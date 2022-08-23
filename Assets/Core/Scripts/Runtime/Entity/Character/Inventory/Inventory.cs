@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Entity.InventorySystem
 {
+    using Item;
     using Utility.ExtensionMethods;
     
     public class Inventory : MonoBehaviour, IInventory

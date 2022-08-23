@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Entity.InventorySystem
 {
+    using Item;
+    
     public interface IInventory
     {
         public string Name { get; set; }

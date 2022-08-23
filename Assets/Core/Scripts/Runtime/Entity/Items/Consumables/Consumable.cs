@@ -2,7 +2,7 @@
 
 using UI;
 
-namespace Entity
+namespace Entity.Item
 {
     [CreateAssetMenu(menuName = "Items/Consumable", fileName = "Consumable_", order = 0)]
     public class Consumable : Item, IUsable
