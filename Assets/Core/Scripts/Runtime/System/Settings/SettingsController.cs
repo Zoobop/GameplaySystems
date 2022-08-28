@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Settings
 {
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
     
     public class SettingsController : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Settings
 
         [field: SerializeField] public bool DisplayFPS;
         [field: SerializeField] public bool DisplayTime;
-        
+
         #region UnityEvents
 
         private void Awake()
@@ -27,10 +27,5 @@ namespace Settings
         }
 
         #endregion
-
-        public float GetFPS()
-        {
-            return 1f / Time.deltaTime;
-        }
     }
 }

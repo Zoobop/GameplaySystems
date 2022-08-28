@@ -6,7 +6,7 @@ namespace InteractionSystem
     using DialogueSystem;
     using InputSystem;
     using UI;
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
     
     public class DialogueInteraction : Interaction
     {

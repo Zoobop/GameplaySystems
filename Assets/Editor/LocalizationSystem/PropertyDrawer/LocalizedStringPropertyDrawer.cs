@@ -1,8 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-using Core.LocalizationSystem;
-using Local = Core.LocalizationSystem.LocalizationSystem;
+using LocalizationSystem;
+using Local = LocalizationSystem.LocalizationSystem;
 
 namespace Editor.LocalizationSystem
 {

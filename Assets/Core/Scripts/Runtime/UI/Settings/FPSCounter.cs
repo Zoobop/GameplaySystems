@@ -1,10 +1,11 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Settings
+namespace UI
 {
+    using Settings;
+    
     public class FPSCounter : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _fpsText;
@@ -12,6 +13,8 @@ namespace Settings
         
         private Coroutine _coroutine;
         private WaitForSeconds _tickDelay;
+        
+        private static float FPS => 1f / Time.deltaTime;
         
         #region UnityEvents
 
@@ -38,7 +41,7 @@ namespace Settings
                 else
                 {
                     _fpsText.enabled = true;
-                    _fpsText.text = $"{(int)SettingsController.Instance.GetFPS()} FPS";
+                    _fpsText.text = $"{(int)FPS} FPS";
                 }
                 
                 yield return _tickDelay;

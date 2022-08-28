@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Core.LocalizationSystem
+namespace LocalizationSystem
 {
     [Serializable]
     public struct LocalizedString

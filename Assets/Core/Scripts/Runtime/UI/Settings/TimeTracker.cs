@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Core.LocalizationSystem;
 using TMPro;
 using UnityEngine;
 
-namespace Settings
+namespace UI
 {
     using ExternalEnvironment;
-    
+    using Settings;
+    using LocalizationSystem;
+
     public class TimeTracker : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _timeText;

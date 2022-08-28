@@ -6,7 +6,7 @@ namespace UI
 {
     using Entity;
     using InteractionSystem;
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
     
     public class InteractionsPanel : MonoBehaviour
     {

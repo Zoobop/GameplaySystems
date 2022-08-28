@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Core.LocalizationSystem
+namespace LocalizationSystem
 {
     using Entity;
     

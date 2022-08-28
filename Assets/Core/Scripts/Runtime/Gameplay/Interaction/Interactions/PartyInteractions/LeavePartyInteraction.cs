@@ -5,7 +5,7 @@ namespace InteractionSystem
     
     using Entity;
     using Entity.Groups;
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
     
     public class LeavePartyInteraction : Interaction
     {

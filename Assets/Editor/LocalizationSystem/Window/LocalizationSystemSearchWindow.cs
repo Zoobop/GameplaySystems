@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-using Local = Core.LocalizationSystem.LocalizationSystem;
+using Local = LocalizationSystem.LocalizationSystem;
 
 namespace Editor.LocalizationSystem
 {

@@ -9,7 +9,7 @@ namespace UI
     using Entity;
     using InputSystem;
     using InteractionSystem;
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
     
     public class InteractContentWindow : ContentWindow<IInteractionTarget>
     {

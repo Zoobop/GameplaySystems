@@ -5,7 +5,7 @@ namespace Entity
     using InventorySystem;
     using DialogueSystem;
     using InteractionSystem;
-    using Core.LocalizationSystem;
+    using LocalizationSystem;
 
     public class Character : MonoBehaviour, ICharacter
     {

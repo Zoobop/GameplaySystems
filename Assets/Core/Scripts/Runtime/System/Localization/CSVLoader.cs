@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Core.LocalizationSystem
+namespace LocalizationSystem
 {
     public class CSVLoader
     {
