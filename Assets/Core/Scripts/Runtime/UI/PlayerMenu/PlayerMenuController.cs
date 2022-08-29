@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -15,14 +16,12 @@ namespace UI
 
         [SerializeField] private InventoryWindow _inventoryWindow;
         [SerializeField] private SkillTreeUI _skillTreeUI;
-        [SerializeField] private SettingsUI _settingsUI;
 
         private IInventory _inventory;
 
         public static PlayerProfileUI PlayerProfile { get; private set; }
         public static InventoryWindow InventoryWindow { get; private set; }
         public static SkillTreeUI SkillTreeUI { get; private set; }
-        public static SettingsUI SettingsUI { get; private set; }
 
         private Coroutine _coroutine;
 
@@ -37,7 +36,6 @@ namespace UI
             PlayerProfile = _playerProfile;
             InventoryWindow = _inventoryWindow;
             SkillTreeUI = _skillTreeUI;
-            SettingsUI = _settingsUI;
         }
 
         #endregion

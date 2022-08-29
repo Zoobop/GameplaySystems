@@ -68,5 +68,10 @@ namespace UI
                 yield return _tickDelay;
             }
         }
+        
+        protected virtual void OnBeginShow() { }
+        protected virtual void OnEndShow() { }
+        protected virtual void OnBeginHide() { }
+        protected virtual void OnEndHide() { }
     }
 }

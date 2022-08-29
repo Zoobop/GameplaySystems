@@ -12,3 +12,8 @@ ui_time_morning,Morning,朝日
 ui_time_midday,Midday,昼日
 ui_time_evening,Evening,夕方
 ui_time_midnight,Midnight,夜半
+ui_settings_general,General,ジェネラル
+ui_settings_graphics,Graphics,グラフィックス
+ui_settings_audio,Audio,サウンド
+ui_settings_controls,Controls,コントロール
+ui_settings_accessibility,Accessibility,アクセシビリティ

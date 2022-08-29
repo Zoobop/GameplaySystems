@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Core/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Demo/Scenes/Demo.unity
+    guid: c13ddccae3ea15342a110dc59d12c795
+  - enabled: 1
+    path: Assets/Core/Scenes/CameraRendering.unity
+    guid: 3a79f72d2f2d76d4ab2f4e2cdaf9a24d
+  - enabled: 1
+    path: Assets/Core/Scenes/UIOnlyScene.unity
+    guid: a8edbae6a1c44014ca3ad0182e0fe4a7
+  - enabled: 1
+    path: Assets/Core/Scenes/DialogueHandling.unity
+    guid: d9f07b1debb67624c90994fd65300202
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b714c60be84411f4f858a3479709264f,
       type: 2}
