@@ -5,6 +5,7 @@ namespace UI
     public interface ITab
     {
         public LocalizedString GetTabName();
-        public void SetActive();
+        public void Enable();
+        public void Disable();
     }
 }

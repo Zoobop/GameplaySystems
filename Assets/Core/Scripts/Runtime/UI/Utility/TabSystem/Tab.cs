@@ -8,6 +8,7 @@ namespace UI
     {
         [Header("Tab")]
         [SerializeField] private LocalizedString _tabName;
+        [SerializeField] private GameObject _tabContent;
 
         private TabController _tabController;
 
@@ -21,9 +22,15 @@ namespace UI
             return _tabName;
         }
 
-        public void SetActive()
+        public void Enable()
         {
+            _tabContent.SetActive(true);
             _tabController.SetActiveTab(this);
+        }
+
+        public void Disable()
+        {
+            _tabContent.SetActive(false);
         }
     }
 }

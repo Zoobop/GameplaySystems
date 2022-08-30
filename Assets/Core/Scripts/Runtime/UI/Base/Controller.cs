@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class Controller : MonoBehaviour
+    public abstract class Controller : MonoBehaviour
     {
         [Header("References")] [SerializeField]
         private CanvasGroup _canvasGroup;
@@ -49,6 +49,10 @@ namespace UI
 
         private IEnumerator AnimateShow()
         {
+            OnBeginShow();
+
+            yield return AwaitOnBeginShow();
+            
             var elapsedTime = 0f;
             while (elapsedTime <= _fadeTime)
             {
@@ -56,10 +60,18 @@ namespace UI
                 _canvasGroup.alpha = Mathf.Lerp(0, 1f, elapsedTime / _fadeTime);
                 yield return _tickDelay;
             }
+
+            yield return AwaitOnEndShow();
+            
+            OnEndShow();
         }
 
         private IEnumerator AnimateHide()
         {
+            OnBeginHide();
+
+            yield return AwaitOnBeginHide();
+            
             var elapsedTime = 0f;
             while (elapsedTime <= _fadeTime)
             {
@@ -67,11 +79,20 @@ namespace UI
                 _canvasGroup.alpha = Mathf.Lerp(1f, 0, elapsedTime / _fadeTime);
                 yield return _tickDelay;
             }
+
+            yield return AwaitOnEndHide();
+            
+            OnEndHide();
         }
         
         protected virtual void OnBeginShow() { }
         protected virtual void OnEndShow() { }
         protected virtual void OnBeginHide() { }
         protected virtual void OnEndHide() { }
+
+        protected virtual IEnumerator AwaitOnBeginShow() => null;
+        protected virtual IEnumerator AwaitOnEndShow() => null;
+        protected virtual IEnumerator AwaitOnBeginHide() => null;
+        protected virtual IEnumerator AwaitOnEndHide() => null;
     }
 }

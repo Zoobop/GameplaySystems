@@ -12,26 +12,16 @@ namespace Editor.UI
     {
         /* Tabs */
         private SerializedProperty tabsProperty;
-        private SerializedProperty activeTabProperty;
 
         private void OnEnable()
         {
             tabsProperty = serializedObject.FindProperty("_tabs");
-            activeTabProperty = serializedObject.FindProperty("_activeTab");
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            var size = tabsProperty.arraySize;
-            if (size > 0)
-            {
-                ((ITab)tabsProperty.GetArrayElementAtIndex(0)
-                    .FindPropertyRelative("tab")
-                    .objectReferenceValue)?.SetActive();
-            }
-            
             DrawTabsArea();
             
             serializedObject.ApplyModifiedProperties();
@@ -42,14 +32,8 @@ namespace Editor.UI
             InspectorUtility.DrawHeader("Tab Content Pairs");
 
             tabsProperty.DrawPropertyField();
-            InspectorUtility.DrawDisabledFields(DrawActiveTabDisabled);
-            
-            InspectorUtility.DrawSpace();
-        }
 
-        private void DrawActiveTabDisabled()
-        {
-            activeTabProperty.DrawPropertyField();
+            InspectorUtility.DrawSpace();
         }
     }
 }

@@ -200,6 +200,7 @@ namespace InputSystem
         private void RegisterActions()
         {
             _inputActions.PlayerUI.OpenInventory.performed += OpenInventoryAction;
+            _inputActions.PlayerUI.OpenPauseMenu.performed += OpenPauseMenuAction;
         }
 
         private void OnPlayerChangedCallback(ICharacter player)
@@ -211,6 +212,11 @@ namespace InputSystem
         private void OpenInventoryAction(InputAction.CallbackContext context)
         {
             PlayerMenuController.Instance.ToggleInventory();
+        }
+        
+        private void OpenPauseMenuAction(InputAction.CallbackContext obj)
+        {
+            SettingsMenuController.Instance.Toggle();
         }
 
         public void SetCallback(string actionName, Action<InputAction.CallbackContext> callback)

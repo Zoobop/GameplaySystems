@@ -6,11 +6,10 @@ namespace UI
     public class TabController : MonoBehaviour
     {
         [SerializeField] private List<TabContentPair> _tabs = new();
-        [SerializeField] private string _activeTab;
 
         #region UnityEvents
 
-        private void Awake()
+        private void Start()
         {
             MapTabActions();
         }
@@ -24,18 +23,21 @@ namespace UI
                 pair.tab.Bind(this);
                 pair.Bind();
             }
+            
+            SetActiveTab(_tabs[0].tab);
         }
 
         public void SetActiveTab(ITab tab)
         {
-            _activeTab = tab.GetTabName();
-            ((Tab) tab).gameObject.SetActive(true);
+            var (activeButton, _) = _tabs.Find(pair => ReferenceEquals(tab, pair.tab));
+            activeButton.Disable();
 
-            foreach (var (_, otherTab) in _tabs)
+            foreach (var (button, otherTab) in _tabs)
             {
                 if (otherTab == tab) continue;
                 
-                ((Tab)otherTab).gameObject.SetActive(false);
+                button.Enable();
+                otherTab.Disable();
             }
         }
     }

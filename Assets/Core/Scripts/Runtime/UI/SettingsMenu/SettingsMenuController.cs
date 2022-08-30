@@ -1,11 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI
 {
     public class SettingsMenuController : Controller
     {
+        public static SettingsMenuController Instance { get; private set; }
+        
         [Header("Settings Menus")] 
         [SerializeField] private TabController _tabController;
         [SerializeField] private GeneralSettingsUI _generalSettings;
@@ -14,24 +15,88 @@ namespace UI
         [SerializeField] private ControlsSettingsUI _controlsSettings;
         [SerializeField] private AccessibilitySettingsUI _accessibilitySettings;
 
+        [Header("Transition")] 
+        [SerializeField] private CanvasGroup _transition;
+
+        [SerializeField] private float _transitionFadeTime = 0.2f;
+        [SerializeField] private float _tickSpeed = 0.001f;
+
+        private WaitForSeconds _tickDelay;
+        private WaitForSeconds _transitionDelay;
+        private bool _isOpen;
+        
+        #region UnityEvents
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Instance = this;
+            
+            _tickDelay = new WaitForSeconds(_tickSpeed);
+            _transitionDelay = new WaitForSeconds(0.15f);
+        }
+
+        #endregion
+
+        #region MenuUtility
+
         public void OpenMenu()
         {
             Show();
+            _isOpen = true;
         }
         
         public void CloseMenu()
         {
             Hide();
+            _isOpen = false;
         }
 
-        protected override void OnEndShow()
+        public void Toggle()
         {
-            _tabController.gameObject.SetActive(true);
+            if (!_isOpen)
+            {
+                OpenMenu();
+            }
+            else
+            {
+                CloseMenu();
+            }
         }
 
-        protected override void OnBeginHide()
+        protected override IEnumerator AwaitOnEndShow()
         {
-            _tabController.gameObject.SetActive(false);
+            yield return _transitionDelay;
+            
+            var elapsedTime = 0f;
+            while (elapsedTime < _transitionFadeTime)
+            {
+                Transition(0, 1, ref elapsedTime);
+
+                yield return _tickDelay;
+            }
         }
+        
+        protected override IEnumerator AwaitOnBeginHide()
+        {
+            var elapsedTime = 0f;
+            while (elapsedTime < _transitionFadeTime)
+            {
+                Transition(1, 0, ref elapsedTime);
+
+                yield return _tickDelay;
+            }
+            
+            yield return _transitionDelay;
+        }
+
+        private void Transition(float start, float end, ref float elapsed)
+        {
+            elapsed += Time.deltaTime;
+            _transition.alpha = Mathf.Lerp(start, end, elapsed / _transitionFadeTime);
+        }
+        
+        #endregion
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    using LocalizationSystem;
+    
     public class EnhancedButton : MonoBehaviour
     {
         [Header("References")] [SerializeField]
@@ -14,9 +16,11 @@ namespace UI
 
         [Header("Events")] [SerializeField] protected Button.ButtonClickedEvent _events;
 
-        [Header("Text")] [SerializeField] private Color _textColor;
+        [Header("Text")] 
+        [SerializeField] private Color _textColor;
         [SerializeField] private Color _textColorInactive;
-        [TextArea] [SerializeField] private string _text;
+        [TextArea] 
+        [SerializeField] private string _text;
 
         [Header("Button")] [SerializeField] private bool _active = true;
         [SerializeField] private Color _buttonBorderColor;
@@ -78,6 +82,7 @@ namespace UI
 
         public void SetText(string text)
         {
+            _text = text;
             _buttonText.text = text;
         }
 

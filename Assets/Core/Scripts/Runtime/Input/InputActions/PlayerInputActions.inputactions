@@ -335,6 +335,17 @@
                 },
                 {
                     "name": "",
+                    "id": "24f46d74-b727-4ed8-a47b-07cf72ac7074",
+                    "path": "<Keyboard>/delete",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "OpenPauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e265f945-3589-4384-b84b-965d54fdf20e",
                     "path": "<Keyboard>/p",
                     "interactions": "",
