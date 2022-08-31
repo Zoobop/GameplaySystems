@@ -7,14 +7,11 @@ namespace UI
 {
     using LocalizationSystem;
     
-    public class EnhancedButton : MonoBehaviour
+    public class EnhancedButton : EnhancedUI<bool, Button.ButtonClickedEvent, UnityAction>
     {
-        [Header("References")] [SerializeField]
-        private TextMeshProUGUI _buttonText;
-
+        [Header("References")] 
+        [SerializeField] private TextMeshProUGUI _buttonText;
         [SerializeField] private Image _buttonBorder;
-
-        [Header("Events")] [SerializeField] protected Button.ButtonClickedEvent _events;
 
         [Header("Text")] 
         [SerializeField] private Color _textColor;
@@ -22,14 +19,16 @@ namespace UI
         [TextArea] 
         [SerializeField] private string _text;
 
-        [Header("Button")] [SerializeField] private bool _active = true;
+        [Header("Button")]
         [SerializeField] private Color _buttonBorderColor;
         [SerializeField] private Color _buttonBorderColorInactive;
         [SerializeField] private Color _buttonColor;
         [SerializeField] private Color _buttonColorInactive;
 
-        protected Button _button;
+        private Button _button;
 
+        #region UnityEvents
+        
         private void Awake()
         {
             _button = GetComponentInChildren<Button>();
@@ -42,10 +41,12 @@ namespace UI
             _buttonText.color = _textColor;
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
+            
             // Assign if null
-            _button ??= GetComponentInChildren<Button>();
+            _button = GetComponentInChildren<Button>();
             if (!_button) return;
 
             // Apply colors
@@ -55,49 +56,51 @@ namespace UI
             _buttonBorder.color = _buttonBorderColor;
             _buttonText.text = _text;
             _buttonText.color = _textColor;
-            _button.interactable = _active;
-
-            if (_active)
-            {
-                Enable();
-            }
-            else
-            {
-                Disable();
-            }
+            _button.interactable = _isActive;
 
             // Apply events
             _button.onClick = _events;
         }
 
-        public void AddEvent(UnityAction action)
+        #endregion
+        
+        #region EnhancedUI
+
+        public override void AddListener(UnityAction action)
         {
             _events.AddListener(action);
         }
 
-        public void RemoveEvent(UnityAction action)
+        public override void RemoveListener(UnityAction action)
         {
             _events.RemoveListener(action);
         }
-
-        public void SetText(string text)
-        {
-            _text = text;
-            _buttonText.text = text;
-        }
-
-        public void Enable()
+        
+        public override void Enable()
         {
             _button.enabled = true;
             _buttonBorder.color = _buttonBorderColor;
             _buttonText.color = _textColor;
         }
 
-        public void Disable()
+        public override void Disable()
         {
             _button.enabled = false;
             _buttonBorder.color = _buttonBorderColorInactive;
             _buttonText.color = _textColorInactive;
+        }
+
+        public override bool GetValue()
+        {
+            return _button.interactable;
+        }
+
+        #endregion
+
+        public void SetText(string text)
+        {
+            _text = text;
+            _buttonText.text = text;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace UI
     public class TabController : MonoBehaviour
     {
         [SerializeField] private List<TabContentPair> _tabs = new();
+        private int _activeTabIndex = 0;
 
         #region UnityEvents
 
@@ -24,21 +25,53 @@ namespace UI
                 pair.Bind();
             }
             
-            SetActiveTab(_tabs[0].tab);
+            SetActiveTab(0);
         }
 
-        public void SetActiveTab(ITab tab)
+        private void SetActiveTab(int index)
         {
-            var (activeButton, _) = _tabs.Find(pair => ReferenceEquals(tab, pair.tab));
-            activeButton.Disable();
+            _activeTabIndex = index;
+            
+            var (button, tab) = _tabs[index];
+            button.Disable();
 
-            foreach (var (button, otherTab) in _tabs)
+            foreach (var (otherButton, otherTab) in _tabs)
             {
                 if (otherTab == tab) continue;
                 
-                button.Enable();
+                otherButton.Enable();
                 otherTab.Disable();
             }
+        }
+        
+        public void SetActiveTab(ITab tab)
+        {
+            var index = _tabs.FindIndex(pair => ReferenceEquals(tab, pair.tab));
+            SetActiveTab(index);
+        }
+
+        public void TabLeft()
+        {
+            var nextIndex = _activeTabIndex - 1;
+            if (nextIndex < 0)
+            {
+                nextIndex = _tabs.Count - 1;
+            }
+
+            // Set tab at index to be active
+            _tabs[nextIndex].tab.Enable();
+        }
+
+        public void TabRight()
+        {
+            var nextIndex = _activeTabIndex + 1;
+            if (nextIndex > _tabs.Count - 1)
+            {
+                nextIndex = 0;
+            }
+            
+            // Set tab at index to be active
+            _tabs[nextIndex].tab.Enable();
         }
     }
 }

@@ -127,12 +127,12 @@ namespace UI
 
         public void SetMoveAllEvent(UnityAction action)
         {
-            _moveAllButton.AddEvent(action);
+            _moveAllButton.AddListener(action);
         }
 
         public void SetMoveEvent(UnityAction action)
         {
-            _moveButton.AddEvent(action);
+            _moveButton.AddListener(action);
         }
 
         public void EnableMove()

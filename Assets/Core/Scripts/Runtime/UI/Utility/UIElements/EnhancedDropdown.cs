@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace UI
 {
     using Utility.ExtensionMethods;
     
-    public class EnhancedDropdown : MonoBehaviour
+    public class EnhancedDropdown : EnhancedUI<int, Dropdown.DropdownEvent, UnityAction<int>>
     {
         [Header("References")] [SerializeField]
         private TextMeshProUGUI _placeholderText;
@@ -22,11 +24,13 @@ namespace UI
 
         private void Awake()
         {
-            _dropdown ??= GetComponentInChildren<TMP_Dropdown>();
+            _dropdown = GetComponentInChildren<TMP_Dropdown>();
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
+            
             // Assign if null
             _dropdown ??= GetComponentInChildren<TMP_Dropdown>();
 
@@ -40,6 +44,35 @@ namespace UI
         private void OnEnable()
         {
             _dropdown.value = 0;
+        }
+
+        #endregion
+
+        #region EnhancedUI
+
+        public override void AddListener(UnityAction<int> action)
+        {
+            _dropdown.onValueChanged.AddListener(action);
+        }
+
+        public override void RemoveListener(UnityAction<int> action)
+        {
+            _dropdown.onValueChanged.RemoveListener(action);
+        }
+        
+        public override void Enable()
+        {
+            _dropdown.interactable = true;
+        }
+
+        public override void Disable()
+        {
+            _dropdown.interactable = false;
+        }
+
+        public override int GetValue()
+        {
+            return _dropdown.value;
         }
 
         #endregion
@@ -99,16 +132,6 @@ namespace UI
         {
             var current = _dropdown.options.ConvertAll(data => data.text);
             return !current.IsIdentical(options);
-        }
-
-        public void Enable()
-        {
-            _dropdown.interactable = true;
-        }
-
-        public void Disable()
-        {
-            _dropdown.interactable = false;
         }
     }
 }

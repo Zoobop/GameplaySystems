@@ -271,6 +271,11 @@ MonoBehaviour:
   <CurrentLanguage>k__BackingField: 0
   DisplayFPS: 1
   DisplayTime: 1
+  MasterVolume: 1
+  MainMenuVolume: 1
+  BGMVolume: 1
+  SoundEffectsVolume: 1
+  <InputType>k__BackingField: 0
 --- !u!1 &700975270
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,8 +390,8 @@ MonoBehaviour:
     _skillTreeKeyBind: 34
     _settingsKeyBind: 35
     _pauseMenuKeyBind: 19
-    _tabLeft: 24
-    _tabRight: 36
+    _tabLeft: 36
+    _tabRight: 24
   _gamepadBinds:
     _interactKeyBind: 48
     _playerProfileKeyBind: 39

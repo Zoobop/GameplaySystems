@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace UI
 {
+    using InputSystem;
+    
     public class SettingsMenuController : Controller
     {
         public static SettingsMenuController Instance { get; private set; }
@@ -45,12 +47,20 @@ namespace UI
         {
             Show();
             _isOpen = true;
+
+            InputController.Instance.DisableMovementActions();
+            InputController.Instance.DisableInteractionActions();
+            InputController.Instance.SetCurrentTabController(_tabController);
         }
         
         public void CloseMenu()
         {
             Hide();
             _isOpen = false;
+            
+            InputController.Instance.RemoveCurrentTabController();
+            InputController.Instance.EnableMovementActions();
+            InputController.Instance.EnableInteractionActions();
         }
 
         public void Toggle()

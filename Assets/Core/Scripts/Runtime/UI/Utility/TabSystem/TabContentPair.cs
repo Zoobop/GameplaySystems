@@ -11,12 +11,12 @@ namespace UI
         public void Bind()
         {
             button.SetText(tab.GetTabName());
-            button.AddEvent(tab.Enable);
+            button.AddListener(tab.Enable);
         }
 
         public void Unbind()
         {
-            button.RemoveEvent(tab.Enable);
+            button.RemoveListener(tab.Enable);
         }
 
         public void Deconstruct(out EnhancedButton button, out ITab tab)

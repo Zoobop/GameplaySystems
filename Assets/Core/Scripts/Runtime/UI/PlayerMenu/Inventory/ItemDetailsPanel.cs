@@ -173,22 +173,22 @@ namespace UI
 
         public void AddDiscardEvent(UnityAction action)
         {
-            _discardButton.AddEvent(action);
+            _discardButton.AddListener(action);
         }
 
         public void RemoveDiscardEvent(UnityAction action)
         {
-            _discardButton.RemoveEvent(action);
+            _discardButton.RemoveListener(action);
         }
 
         public void AddUseEvent(UnityAction action)
         {
-            _useButton.AddEvent(action);
+            _useButton.AddListener(action);
         }
 
         public void RemoveUseEvent(UnityAction action)
         {
-            _useButton.RemoveEvent(action);
+            _useButton.RemoveListener(action);
         }
     }
 }

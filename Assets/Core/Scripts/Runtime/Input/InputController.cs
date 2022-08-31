@@ -26,6 +26,7 @@ namespace InputSystem
         private InputType _currentInputType = InputType.Keyboard;
 
         private ICharacter _player;
+        private TabController _tabController;
 
         public KeyBindings CurrentKeyBinds => _currentInputType == InputType.Gamepad ? _gamepadBinds : _keyboardBinds;
         public InputType InputType => _currentInputType;
@@ -68,6 +69,7 @@ namespace InputSystem
             DisablePlayerUIActions();
             DisableInteractionActions();
             DisableMovementActions();
+            DisableTabControl();
         }
 
         #endregion
@@ -201,6 +203,8 @@ namespace InputSystem
         {
             _inputActions.PlayerUI.OpenInventory.performed += OpenInventoryAction;
             _inputActions.PlayerUI.OpenPauseMenu.performed += OpenPauseMenuAction;
+            _inputActions.TabControl.TabLeft.performed += TabLeftAction;
+            _inputActions.TabControl.TabRight.performed += TabRightAction;
         }
 
         private void OnPlayerChangedCallback(ICharacter player)
@@ -214,9 +218,19 @@ namespace InputSystem
             PlayerMenuController.Instance.ToggleInventory();
         }
         
-        private void OpenPauseMenuAction(InputAction.CallbackContext obj)
+        private void OpenPauseMenuAction(InputAction.CallbackContext context)
         {
             SettingsMenuController.Instance.Toggle();
+        }
+
+        private void TabLeftAction(InputAction.CallbackContext context)
+        {
+            _tabController.TabLeft();
+        }
+        
+        private void TabRightAction(InputAction.CallbackContext context)
+        {
+            _tabController.TabRight();
         }
 
         public void SetCallback(string actionName, Action<InputAction.CallbackContext> callback)
@@ -269,6 +283,16 @@ namespace InputSystem
             _inputActions.PlayerUI.Disable();
         }
 
+        private void EnableTabControl()
+        {
+            _inputActions.TabControl.Enable();
+        }
+
+        private void DisableTabControl()
+        {
+            _inputActions.TabControl.Disable();
+        }
+
         #endregion
 
         #region Inputs
@@ -276,6 +300,18 @@ namespace InputSystem
         public InputAction GetPlayerInputAction(string actionName)
         {
             return _inputActions.FindAction(actionName);
+        }
+        
+        public void SetCurrentTabController(TabController tabController)
+        {
+            _tabController = tabController;
+            EnableTabControl();
+        }
+        
+        public void RemoveCurrentTabController()
+        {
+            DisableTabControl();
+            _tabController = null;
         }
 
         #endregion
