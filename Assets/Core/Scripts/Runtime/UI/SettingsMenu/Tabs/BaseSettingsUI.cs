@@ -6,7 +6,6 @@ namespace UI
     
     public abstract class BaseSettingsUI : MonoBehaviour
     {
-        [Header("References")] 
-        [SerializeField] protected Canvas _canvas;
+        
     }
 }

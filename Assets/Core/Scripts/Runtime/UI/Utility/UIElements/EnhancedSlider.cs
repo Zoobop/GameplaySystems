@@ -8,31 +8,35 @@ namespace UI
     public class EnhancedSlider : EnhancedUI<float, Slider.SliderEvent, UnityAction<float>>
     {
         [Header("Slider")]
-        [SerializeField] private float _minValue;
-        [SerializeField] private float _maxValue;
-        [SerializeField] private float _currentValue;
+        [SerializeField] private float _minValue = 0f;
+        [SerializeField] private float _maxValue = 1f;
+        [SerializeField] private float _currentValue = 0.5f;
 
         private Slider _slider;
         
         #region UnityEvents
 
-        protected void Awake()
+        private void Awake()
         {
-            
+            _slider = GetComponentInChildren<Slider>();
+
+            _slider.minValue = _minValue;
+            _slider.maxValue = _maxValue;
+            _slider.value = _currentValue;
+            _slider.onValueChanged = _events;
         }
 
         protected override void OnValidate()
         {
-            base.OnValidate();
-            
             _slider = GetComponentInChildren<Slider>();
             if (_slider == null) return;
 
             _slider.minValue = _minValue;
             _slider.maxValue = _maxValue;
             _slider.value = _currentValue;
-
             _slider.onValueChanged = _events;
+            
+            base.OnValidate();
         }
 
         #endregion
@@ -64,6 +68,18 @@ namespace UI
             return _currentValue;
         }
 
+        public override void SetValue(float value)
+        {
+            _currentValue = value;
+            _slider.value = value;
+        }
+
         #endregion
+
+        public void SetBounds(int min, int max)
+        {
+            _slider.minValue = min;
+            _slider.maxValue = max;
+        }
     }
 }

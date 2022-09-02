@@ -269,13 +269,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentLanguage>k__BackingField: 0
-  DisplayFPS: 1
-  DisplayTime: 1
-  MasterVolume: 1
-  MainMenuVolume: 1
-  BGMVolume: 1
-  SoundEffectsVolume: 1
+  <DisplayFPS>k__BackingField: 1
+  <DisplayTime>k__BackingField: 1
+  <MasterVolume>k__BackingField: 1
+  <MainMenuVolume>k__BackingField: 1
+  <BGMVolume>k__BackingField: 1
+  <SoundEffectsVolume>k__BackingField: 1
   <InputType>k__BackingField: 0
+  <MouseSensitivityHorizontal>k__BackingField: 0.652
+  <MouseSensitivityVertical>k__BackingField: 0.583
+  <MouseInvertVertical>k__BackingField: 1
+  <GamepadSensitivityHorizontal>k__BackingField: 0.5
+  <GamepadSensitivityVertical>k__BackingField: 0.5
+  <GamepadInvertVertical>k__BackingField: 0
 --- !u!1 &700975270
 GameObject:
   m_ObjectHideFlags: 0

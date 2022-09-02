@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class EnhancedToggle : EnhancedUI<bool, Button.ButtonClickedEvent, UnityAction>
+    public class EnhancedToggle : EnhancedUI<bool, Toggle.ToggleEvent, UnityAction<bool>>
     {
         [SerializeField] private Image _toggleCheckmark;
         [SerializeField] private Button _toggleButton;
@@ -15,28 +15,27 @@ namespace UI
 
         private void Awake()
         {
-            _toggleButton.onClick = _events;
             _toggleButton.onClick.AddListener(ToggleValue);
         }
 
         protected override void OnValidate()
         {
-            base.OnValidate();
+            if (_toggleCheckmark == null) return;
+
+            _toggleCheckmark.enabled = _value;
+            _toggleButton.interactable = _isActive;
             
-            if (_toggleCheckmark != null)
-            {
-                _toggleCheckmark.enabled = _value;
-            }
+            base.OnValidate();
         }
 
-        public override void AddListener(UnityAction action)
+        public override void AddListener(UnityAction<bool> action)
         {
-            _toggleButton.onClick.AddListener(action);
+            _events.AddListener(action);
         }
 
-        public override void RemoveListener(UnityAction action)
+        public override void RemoveListener(UnityAction<bool> action)
         {
-            _toggleButton.onClick.RemoveListener(action);
+            _events.RemoveListener(action);
         }
 
         public override void Enable()
@@ -53,13 +52,21 @@ namespace UI
         {
             return _value;
         }
-        
+
+        public override void SetValue(bool value)
+        {
+            _value = value;
+            _toggleCheckmark.enabled = value;
+        }
+
         #endregion
 
         private void ToggleValue()
         {
             _value = !_value;
             _toggleCheckmark.enabled = _value;
+            
+            _events?.Invoke(_value);
         }
 
     }

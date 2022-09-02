@@ -11,7 +11,7 @@ namespace UI
     {
         [Header("References")] 
         [SerializeField] private TextMeshProUGUI _buttonText;
-        [SerializeField] private Image _buttonBorder;
+        [SerializeField] private Image _buttonImage;
 
         [Header("Text")] 
         [SerializeField] private Color _textColor;
@@ -19,11 +19,12 @@ namespace UI
         [TextArea] 
         [SerializeField] private string _text;
 
-        [Header("Button")]
+        [Header("Button")] 
+        [SerializeField] private ColorBlock _buttonColors = ColorBlock.defaultColorBlock;
+        
+        [Header("Border")]
         [SerializeField] private Color _buttonBorderColor;
         [SerializeField] private Color _buttonBorderColorInactive;
-        [SerializeField] private Color _buttonColor;
-        [SerializeField] private Color _buttonColorInactive;
 
         private Button _button;
 
@@ -32,10 +33,8 @@ namespace UI
         private void Awake()
         {
             _button = GetComponentInChildren<Button>();
-            var color = ColorUtils.ApplyColor(_buttonColor);
-            color.disabledColor = _buttonColorInactive;
-            _button.colors = color;
-            _buttonBorder.color = _buttonBorderColor;
+
+            _button.colors = _buttonColors;
             _button.onClick = _events;
             _buttonText.text = _text;
             _buttonText.color = _textColor;
@@ -43,23 +42,20 @@ namespace UI
 
         protected override void OnValidate()
         {
-            base.OnValidate();
-            
             // Assign if null
             _button = GetComponentInChildren<Button>();
             if (!_button) return;
 
             // Apply colors
-            var color = ColorUtils.ApplyColor(_buttonColor);
-            color.disabledColor = _buttonColorInactive;
-            _button.colors = color;
-            _buttonBorder.color = _buttonBorderColor;
+            _button.interactable = _isActive;
+            _button.colors = _buttonColors;
             _buttonText.text = _text;
             _buttonText.color = _textColor;
-            _button.interactable = _isActive;
 
             // Apply events
             _button.onClick = _events;
+            
+            base.OnValidate();
         }
 
         #endregion
@@ -78,21 +74,26 @@ namespace UI
         
         public override void Enable()
         {
-            _button.enabled = true;
-            _buttonBorder.color = _buttonBorderColor;
+            _button.interactable = true;
+            _buttonImage.color = _buttonBorderColor;
             _buttonText.color = _textColor;
         }
 
         public override void Disable()
         {
-            _button.enabled = false;
-            _buttonBorder.color = _buttonBorderColorInactive;
+            _button.interactable = false;
+            _buttonImage.color = _buttonBorderColorInactive;
             _buttonText.color = _textColorInactive;
         }
 
         public override bool GetValue()
         {
             return _button.interactable;
+        }
+
+        public override void SetValue(bool value)
+        {
+            _button.interactable = value;
         }
 
         #endregion

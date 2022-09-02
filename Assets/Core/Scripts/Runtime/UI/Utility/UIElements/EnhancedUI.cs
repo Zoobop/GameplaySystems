@@ -7,7 +7,7 @@ namespace UI
     {
         [Header("General")]
         [SerializeField] protected TEvent _events;
-        [SerializeField] protected bool _isActive;
+        [SerializeField] protected bool _isActive = true;
 
         #region UnityEvents
 
@@ -32,5 +32,6 @@ namespace UI
         public abstract void Disable();
         
         public abstract TValue GetValue();
+        public abstract void SetValue(TValue value);
     }
 }

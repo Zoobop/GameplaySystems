@@ -9,17 +9,11 @@ namespace UI
     {
         [SerializeField] private TMP_Text _keyBindNameText;
         [SerializeField] private BindDropdownOptions _bindOptions;
-
-        private InputController _inputController;
+        
         private KeyBind _keyBind;
         private InputType _inputType;
         private string _actionName;
         private string _displayName;
-
-        private void Start()
-        {
-            _inputController = InputController.Instance;
-        }
 
         private void UpdateUI()
         {
@@ -55,7 +49,7 @@ namespace UI
         public void ResetKeyBind()
         {
             // Reset input action
-            _keyBind = _inputController.ResetKeyBind(_actionName, _inputType);
+            _keyBind = InputController.Instance.ResetKeyBind(_actionName, _inputType);
 
             // Update key bind
             UpdateUI();

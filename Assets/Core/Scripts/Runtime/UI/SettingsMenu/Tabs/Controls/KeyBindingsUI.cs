@@ -14,7 +14,8 @@ namespace UI
         private RebindKeyUI _interact;
 
         // Player UI
-        [Header("Player UI")] [SerializeField] private RebindKeyUI _playerProfile;
+        [Header("Player UI")] 
+        [SerializeField] private RebindKeyUI _playerProfile;
         [SerializeField] private RebindKeyUI _inventory;
         [SerializeField] private RebindKeyUI _skillTree;
         [SerializeField] private RebindKeyUI _settings;
@@ -22,13 +23,13 @@ namespace UI
 
         private void Start()
         {
-            InputController.Instance.OnKeyBindsChanged += UpdateKeyBindsCallback;
+            InputController.Instance.OnKeyBindsChanged += OnKeyBindsChangedCallback;
 
             // Initial Update
-            UpdateKeyBindsCallback(InputController.Instance.CurrentKeyBinds);
+            OnKeyBindsChangedCallback(InputController.Instance.CurrentKeyBinds);
         }
 
-        private void UpdateKeyBindsCallback(KeyBindings keyBindings)
+        private void OnKeyBindsChangedCallback(KeyBindings keyBindings)
         {
             //_moveUp.AssignBinding("Move", KeyBindings.GetActionName(nameof(keyBindings.MoveUpKeyBind)), keyBindings.MoveUpKeyBind, 1);
             //_moveDown.AssignBinding("Move", KeyBindings.GetActionName(nameof(keyBindings.MoveDownKeyBind)), keyBindings.MoveDownKeyBind, 2);

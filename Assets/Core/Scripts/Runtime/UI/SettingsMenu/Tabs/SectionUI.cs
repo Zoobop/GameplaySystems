@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,9 +11,11 @@ namespace UI
     {
         [Header("References")]
         [SerializeField] private TextMeshProUGUI _sectionTitleText;
-        
+        [SerializeField] private List<TextMeshProUGUI> _inputLabelTexts = new();
+
         [Header("Section Info")]
         [SerializeField] private LocalizedString _sectionTitle;
+        [SerializeField] private List<LocalizedString> _inputLabels = new();
 
         #region UnityEvents
 

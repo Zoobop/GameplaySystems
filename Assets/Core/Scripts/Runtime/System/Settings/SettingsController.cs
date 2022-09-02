@@ -16,8 +16,8 @@ namespace Settings
         
         /* GRAPHICS */
         [field: Header("Graphics Settings")]
-        [field: SerializeField] public bool DisplayFPS;
-        [field: SerializeField] public bool DisplayTime;
+        [field: SerializeField] public bool DisplayFPS { get; set; } = true;
+        [field: SerializeField] public bool DisplayTime { get; set; } = true;
 
         /* AUDIO */
         [field: Header("Audio Settings")]

@@ -29,8 +29,6 @@ namespace UI
 
         protected override void OnValidate()
         {
-            base.OnValidate();
-            
             // Assign if null
             _dropdown ??= GetComponentInChildren<TMP_Dropdown>();
 
@@ -39,6 +37,8 @@ namespace UI
             // Refresh options
             _dropdown.ClearOptions();
             _dropdown.AddOptions(_options);
+            
+            base.OnValidate();
         }
 
         private void OnEnable()
@@ -73,6 +73,11 @@ namespace UI
         public override int GetValue()
         {
             return _dropdown.value;
+        }
+
+        public override void SetValue(int value)
+        {
+            _dropdown.value = value;
         }
 
         #endregion

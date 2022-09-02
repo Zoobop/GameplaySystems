@@ -21,6 +21,11 @@ namespace LocalizationSystem
         private static bool _isInitialized;
 
         public static Language CurrentLanguage { get; set; } = Language.English;
+        public static IDictionary<Language, string> AllLanguages { get; } = new Dictionary<Language, string>
+        {
+            { Language.English, nameof(Language.English) },
+            { Language.Japanese, nameof(Language.Japanese) },
+        };
 
         public static void Init()
         {
