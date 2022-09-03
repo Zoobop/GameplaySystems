@@ -41,11 +41,6 @@ namespace UI
             base.OnValidate();
         }
 
-        private void OnEnable()
-        {
-            _dropdown.value = 0;
-        }
-
         #endregion
 
         #region EnhancedUI
@@ -102,6 +97,12 @@ namespace UI
             _placeholderText.text = PlaceHolderText;
         }
 
+        public void Apply()
+        {
+            _dropdown.value = 0;
+            _placeholderText.text = _dropdown.options[0].text;
+        }
+        
         public void SetOptions(List<string> options)
         {
             // Get difference in length
@@ -130,7 +131,7 @@ namespace UI
                 _dropdown.SetValueWithoutNotify(_dropdown.options.Count - 1);
             }
 
-            print($"[{string.Join(" - ", _dropdown.options.ConvertAll(data => data.text))}]");
+            //print($"[{string.Join(" - ", _dropdown.options.ConvertAll(data => data.text))}]");
         }
 
         public bool HaveOptionsChanged(List<string> options)

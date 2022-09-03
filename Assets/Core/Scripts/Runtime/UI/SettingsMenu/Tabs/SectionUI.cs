@@ -6,6 +6,7 @@ using UnityEngine;
 namespace UI
 {
     using LocalizationSystem;
+    using InputSystem;
     
     public class SectionUI : MonoBehaviour
     {
@@ -19,11 +20,22 @@ namespace UI
 
         #region UnityEvents
 
-        private void Start()
+        private void Awake()
         {
-            _sectionTitleText.text = _sectionTitle;
+            LocalizationSystem.OnLanguageChanged += MapTexts;
         }
 
         #endregion
+
+        private void MapTexts(LocalizationSystem.Language language)
+        {
+            _sectionTitleText.text = _sectionTitle;
+            
+            var size = _inputLabelTexts.Count;
+            for (var i = 0; i < size; i++)
+            {
+                _inputLabelTexts[i].text = _inputLabels[i];
+            }
+        }
     }
 }

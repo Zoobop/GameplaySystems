@@ -37,15 +37,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look1stPerson"",
-                    ""type"": ""Value"",
-                    ""id"": ""ede08323-fef8-4acf-b596-9a026fadae00"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""9614c5b4-c5c9-4db2-8a25-ae82479531ea"",
@@ -172,17 +163,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Look3rdPerson"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4a9672ea-bfa0-49e2-8aeb-7dbafe3daaf3"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Look1stPerson"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1004,7 +984,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Look3rdPerson = m_Movement.FindAction("Look3rdPerson", throwIfNotFound: true);
-        m_Movement_Look1stPerson = m_Movement.FindAction("Look1stPerson", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         // Interaction
@@ -1093,7 +1072,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Look3rdPerson;
-    private readonly InputAction m_Movement_Look1stPerson;
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Sprint;
     public struct MovementActions
@@ -1101,7 +1079,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public MovementActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Look3rdPerson => m_Wrapper.m_Movement_Look3rdPerson;
-        public InputAction @Look1stPerson => m_Wrapper.m_Movement_Look1stPerson;
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
@@ -1116,9 +1093,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Look3rdPerson.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook3rdPerson;
                 @Look3rdPerson.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook3rdPerson;
                 @Look3rdPerson.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook3rdPerson;
-                @Look1stPerson.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook1stPerson;
-                @Look1stPerson.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook1stPerson;
-                @Look1stPerson.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnLook1stPerson;
                 @Move.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
@@ -1132,9 +1106,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Look3rdPerson.started += instance.OnLook3rdPerson;
                 @Look3rdPerson.performed += instance.OnLook3rdPerson;
                 @Look3rdPerson.canceled += instance.OnLook3rdPerson;
-                @Look1stPerson.started += instance.OnLook1stPerson;
-                @Look1stPerson.performed += instance.OnLook1stPerson;
-                @Look1stPerson.canceled += instance.OnLook1stPerson;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -1410,7 +1381,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IMovementActions
     {
         void OnLook3rdPerson(InputAction.CallbackContext context);
-        void OnLook1stPerson(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }

@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look1stPerson",
-                    "type": "Value",
-                    "id": "ede08323-fef8-4acf-b596-9a026fadae00",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Move",
                     "type": "Value",
                     "id": "9614c5b4-c5c9-4db2-8a25-ae82479531ea",
@@ -150,17 +141,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Look3rdPerson",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4a9672ea-bfa0-49e2-8aeb-7dbafe3daaf3",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Look1stPerson",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

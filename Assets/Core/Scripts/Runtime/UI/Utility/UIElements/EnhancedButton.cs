@@ -33,11 +33,6 @@ namespace UI
         private void Awake()
         {
             _button = GetComponentInChildren<Button>();
-
-            _button.colors = _buttonColors;
-            _button.onClick = _events;
-            _buttonText.text = _text;
-            _buttonText.color = _textColor;
         }
 
         protected override void OnValidate()

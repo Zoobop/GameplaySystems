@@ -32,6 +32,7 @@ namespace InputSystem
         public InputType InputType => _currentInputType;
 
         public event Action<KeyBindings> OnKeyBindsChanged = delegate { };
+        public event Action<InputType> OnInputChanged = delegate { };
 
         #region UnityEvents
 
@@ -79,6 +80,10 @@ namespace InputSystem
         public void SetInputType(InputType type)
         {
             _currentInputType = type;
+            
+            // Invoke event
+            OnKeyBindsChanged?.Invoke(CurrentKeyBinds);
+            OnInputChanged?.Invoke(_currentInputType);
         }
 
         private void OnDeviceChangedCallback(InputDevice device, InputDeviceChange change)
@@ -139,8 +144,8 @@ namespace InputSystem
         private void ApplyBinds(in KeyBindings keyBindings, InputType inputType)
         {
             SetKeyBind(_inputActions.Interaction.Interact.name, keyBindings.InteractKeyBind, inputType, false);
-            SetKeyBind(_inputActions.TabControl.TabLeft.name, keyBindings.TabLeft, inputType, false);
-            SetKeyBind(_inputActions.TabControl.TabRight.name, keyBindings.TabRight, inputType, false);
+            SetKeyBind(_inputActions.TabControl.TabLeft.name, keyBindings.TabLeftKeyBind, inputType, false);
+            SetKeyBind(_inputActions.TabControl.TabRight.name, keyBindings.TabRightKeyBind, inputType, false);
             //SetKeyBind(_inputActions.PlayerUI.OpenPlayerProfile.name, keyBindings.OpenPlayerProfileKeyBind, inputType, false);
             SetKeyBind(_inputActions.PlayerUI.OpenInventory.name, keyBindings.OpenInventoryKeyBind, inputType, false);
             //SetKeyBind(_inputActions.PlayerUI.OpenSkillTree.name, keyBindings.OpenSkillTreeKeyBind, inputType, false);

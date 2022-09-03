@@ -20,12 +20,14 @@ namespace LocalizationSystem
         private static CSVLoader _csvLoader;
         private static bool _isInitialized;
 
-        public static Language CurrentLanguage { get; set; } = Language.English;
+        public static Language CurrentLanguage { get; private set; } = Language.English;
         public static IDictionary<Language, string> AllLanguages { get; } = new Dictionary<Language, string>
         {
             { Language.English, nameof(Language.English) },
             { Language.Japanese, nameof(Language.Japanese) },
         };
+
+        public static event Action<Language> OnLanguageChanged = delegate { };
 
         public static void Init()
         {
@@ -41,6 +43,13 @@ namespace LocalizationSystem
         {
             _localizedEN = _csvLoader.GetLocalizationMap("en");
             _localizedJP = _csvLoader.GetLocalizationMap("jp");
+        }
+
+        public static void SetLanguage(Language language)
+        {
+            CurrentLanguage = language;
+            
+            OnLanguageChanged?.Invoke(CurrentLanguage);
         }
 
         public static string GetLocalizedValue(string key)

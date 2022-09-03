@@ -31,9 +31,11 @@ namespace Settings
         [field: SerializeField] public InputType InputType { get; set; } = InputType.Keyboard;
         [field: SerializeField, Range(0f, 1f)] public float MouseSensitivityHorizontal { get; set; } = 0.5f; // 1 will be 100, 0 will be 0
         [field: SerializeField, Range(0f, 1f)] public float MouseSensitivityVertical { get; set; } = 0.5f;
+        [field: SerializeField] public bool MouseInvertHorizontal { get; set; } = false;
         [field: SerializeField] public bool MouseInvertVertical { get; set; } = false;
         [field: SerializeField, Range(0f, 1f)] public float GamepadSensitivityHorizontal { get; set; } = 0.5f;
         [field: SerializeField, Range(0f, 1f)] public float GamepadSensitivityVertical { get; set; } = 0.5f;
+        [field: SerializeField] public bool GamepadInvertHorizontal { get; set; } = false;
         [field: SerializeField] public bool GamepadInvertVertical { get; set; } = false;
         
         /* ACCESSIBILITY */
@@ -43,17 +45,12 @@ namespace Settings
         private void Awake()
         {
             Instance = this;
+            LocalizationSystem.SetLanguage(CurrentLanguage);
         }
 
         private void Start()
         {
-            LocalizationSystem.CurrentLanguage = CurrentLanguage;
             InputController.Instance.SetInputType(InputType);
-        }
-
-        private void OnValidate()
-        {
-            LocalizationSystem.CurrentLanguage = CurrentLanguage;
         }
 
         #endregion
