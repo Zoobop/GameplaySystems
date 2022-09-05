@@ -37,7 +37,7 @@ namespace CameraSystem
         private void Start()
         {
             // Assign if null
-            _lookAction ??= InputController.Instance.GetPlayerInputAction("Look1stPerson");
+            _lookAction ??= InputController.GetPlayerInputAction("Look1stPerson");
         }
 
         private void Update()

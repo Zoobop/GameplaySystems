@@ -88,8 +88,8 @@ namespace UI
             Deselect();
 
             // Input handling
-            InputController.Instance.DisableInteractionActions();
-            InputController.Instance.EnableGeneralUIActions();
+            InputController.DisableInteractionActions();
+            InputController.EnableGeneralUIActions();
 
             yield return base.Show(content);
         }
@@ -104,8 +104,8 @@ namespace UI
             Deselect();
 
             // Input handling
-            InputController.Instance.EnableInteractionActions();
-            InputController.Instance.DisableGeneralUIActions();
+            InputController.EnableInteractionActions();
+            InputController.DisableGeneralUIActions();
 
             // Set window visibility
             SetCanvas(false);

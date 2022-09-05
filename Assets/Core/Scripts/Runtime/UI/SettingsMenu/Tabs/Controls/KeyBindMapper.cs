@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using InputSystem;
@@ -32,27 +33,31 @@ namespace UI
         private const string PauseMenuAction = "OpenPauseMenu";
         private const string TabLeftAction = "TabLeft";
         private const string TabRightAction = "TabRight";
-        
+
+        #region UnityEvents
+
         private void Start()
         {
-            InputController.Instance.OnKeyBindsChanged += OnKeyBindsChangedCallback;
+            InputController.OnKeyBindsChanged += OnKeyBindsChangedCallback;
 
             // Initial Update
-            OnKeyBindsChangedCallback(InputController.Instance.CurrentKeyBinds);
+            OnKeyBindsChangedCallback(InputController.CurrentKeyBinds);
         }
 
+        #endregion
+        
         private void OnKeyBindsChangedCallback(KeyBindings keyBindings)
         {
             if (_inputType == InputType.Keyboard)
             {
-                _moveForward.AssignBinding(MoveAction, keyBindings.MoveForwardKeyBind, _inputType);
-                _moveBack.AssignBinding(MoveAction, keyBindings.MoveBackKeyBind, _inputType);
-                _moveLeft.AssignBinding(MoveAction, keyBindings.MoveLeftKeyBind, _inputType);
-                _moveRight.AssignBinding(MoveAction, keyBindings.MoveRightKeyBind, _inputType);
+                _moveForward.AssignBinding(MoveAction, "MoveForward", keyBindings.MoveForwardKeyBind, _inputType, 1);
+                _moveBack.AssignBinding(MoveAction, "MoveBack", keyBindings.MoveBackKeyBind, _inputType, 2);
+                _moveLeft.AssignBinding(MoveAction, "MoveLeft", keyBindings.MoveLeftKeyBind, _inputType, 3);
+                _moveRight.AssignBinding(MoveAction, "MoveRight", keyBindings.MoveRightKeyBind, _inputType, 4);
             }
             else // Gamepad
             {
-                _movement.AssignBinding(MoveAction, keyBindings.MovementKeyBind, _inputType);
+                _movement.AssignBinding(MoveAction, "Movement", keyBindings.MovementKeyBind, _inputType, 4);
             }
 
             _sprint.AssignBinding(SprintAction, keyBindings.SprintKeyBind, _inputType);
@@ -62,15 +67,27 @@ namespace UI
             _pauseMenu.AssignBinding(PauseMenuAction, keyBindings.OpenPauseMenuKeyBind, _inputType);
             _tabLeft.AssignBinding(TabLeftAction, keyBindings.TabLeftKeyBind, _inputType);
             _tabRight.AssignBinding(TabRightAction, keyBindings.TabRightKeyBind, _inputType);
-            
-            /*_playerProfile.AssignBinding(KeyBindings.GetActionName(nameof(keyBindings.OpenPlayerProfileKeyBind)),
-                "Player Profile", keyBindings.OpenPlayerProfileKeyBind, _inputType);
-            _inventory.AssignBinding(KeyBindings.GetActionName(nameof(keyBindings.OpenInventoryKeyBind)), "Inventory",
-                keyBindings.OpenInventoryKeyBind, _inputType);
-            _skillTree.AssignBinding(KeyBindings.GetActionName(nameof(keyBindings.OpenSkillTreeKeyBind)), "Skill Tree",
-                keyBindings.OpenSkillTreeKeyBind, _inputType);
-            _settings.AssignBinding(KeyBindings.GetActionName(nameof(keyBindings.OpenSettingsKeyBind)), "Settings",
-                keyBindings.OpenSettingsKeyBind, _inputType);*/
+        }
+
+        public void ResetAllToDefault()
+        {
+            if (_inputType == InputType.Keyboard)
+            {
+                _moveForward.ResetKeyBind();
+                _moveBack.ResetKeyBind();
+                _moveLeft.ResetKeyBind();
+                _moveRight.ResetKeyBind();
+            }
+            else // Gamepad
+            {
+                _movement.ResetKeyBind();
+            }
+
+            _sprint.ResetKeyBind();
+            _interact.ResetKeyBind();
+            _pauseMenu.ResetKeyBind();
+            _tabLeft.ResetKeyBind();
+            _tabRight.ResetKeyBind();
         }
     }
 }

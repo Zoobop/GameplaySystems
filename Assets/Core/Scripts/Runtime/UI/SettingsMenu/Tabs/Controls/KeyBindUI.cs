@@ -1,6 +1,11 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+using RebindOperation = UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
 
 namespace UI
 {
@@ -13,48 +18,75 @@ namespace UI
         [SerializeField] private TMP_Text _displayText;
         [SerializeField] private TMP_Text _bindButtonText;
         [SerializeField] private TMP_Text _resetButtonText;
+        [SerializeField] private Image _keyBindImage;
         
         [Header("Key Bind Visuals")]
         [SerializeField] private LocalizedString _displayName;
-        [SerializeField] private LocalizedString _keyBindName;
         [SerializeField] private LocalizedString _resetButtonName;
 
         private KeyBind _keyBind;
         private InputType _inputType;
         private string _actionName;
+        private string _keyBindName;
+        private int _relativeIndex;
 
         private void UpdateUI()
         {
             // Update key bind action text
             _displayText.text = _displayName;
-            _bindButtonText.text = _keyBindName;
             _resetButtonText.text = _resetButtonName;
+            
+            if (_inputType == InputType.Keyboard)
+            {
+                //_keyBindImage.sprite = InputActionRegistry.Instance.GetKeyboardKeyImage();
+                _keyBindImage.enabled = false;
+                _bindButtonText.enabled = true;
+                _bindButtonText.text = InputActionRegistry.EnumToString(_keyBind);
+                return;
+            }
+
+            _keyBindImage.enabled = true;
+            _keyBindImage.sprite = InputActionRegistry.KeyCodeToImage(_keyBind);
+            _bindButtonText.enabled = false;
         }
 
-        public void AssignBinding(string actionName, KeyBind key, InputType inputType)
+        public void AssignBinding(string actionName, KeyBind keyBind, InputType inputType)
         {
             // Set input action
             _actionName = actionName;
-            _keyBind = key;
+            _keyBindName = actionName;
+            _keyBind = keyBind;
             _inputType = inputType;
+            _relativeIndex = 0;
+
+            // Update UI
+            UpdateUI();
+        }
+        
+        public void AssignBinding(string actionName, string secondaryName, KeyBind keyBind, InputType inputType, int relativeIndex = 0)
+        {
+            // Set input action
+            _actionName = actionName;
+            _keyBindName = secondaryName;
+            _keyBind = keyBind;
+            _inputType = inputType;
+            _relativeIndex = relativeIndex;
 
             // Update UI
             UpdateUI();
         }
 
-        public void UpdateKeyBinds()
+        public void RebindKeyBind(Action action)
         {
-            // Update key bind
-            InputController.Instance.SetKeyBind(_actionName, _keyBind, _inputType);
+            var bindIndex = (int) _inputType + _relativeIndex;
+            InputController.RebindKeyBind(_actionName, _keyBindName, bindIndex, action);
         }
 
         public void ResetKeyBind()
         {
             // Reset input action
-            _keyBind = InputController.Instance.ResetKeyBind(_actionName, _inputType);
-
-            // Update key bind
-            UpdateUI();
+            var bindIndex = (int) _inputType + _relativeIndex;
+            InputController.ResetKeyBind(_actionName, _keyBindName, bindIndex);
         }
     }
 }

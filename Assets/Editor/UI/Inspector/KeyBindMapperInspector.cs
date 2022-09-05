@@ -14,16 +14,16 @@ namespace Editor.UI
         private SerializedProperty inputTypeProperty;
         
         /* Movement */
-        
-        // Keyboard
         private SerializedProperty moveForwardProperty;
         private SerializedProperty moveBackProperty;
         private SerializedProperty moveLeftProperty;
         private SerializedProperty moveRightProperty;
-        
-        // Gamepad
         private SerializedProperty movementProperty;
+        private SerializedProperty sprintProperty;
         
+        /* Interaction */
+        private SerializedProperty interactProperty;
+
         /* UI */
         private SerializedProperty pauseMenuProperty;
         private SerializedProperty tabLeftProperty;
@@ -37,8 +37,10 @@ namespace Editor.UI
             moveBackProperty = serializedObject.FindProperty("_moveBack");
             moveLeftProperty = serializedObject.FindProperty("_moveLeft");
             moveRightProperty = serializedObject.FindProperty("_moveRight");
-
             movementProperty = serializedObject.FindProperty("_movement");
+            sprintProperty = serializedObject.FindProperty("_sprint");
+            
+            interactProperty = serializedObject.FindProperty("_interact");
 
             pauseMenuProperty = serializedObject.FindProperty("_pauseMenu");
             tabLeftProperty = serializedObject.FindProperty("_tabLeft");
@@ -60,7 +62,11 @@ namespace Editor.UI
             {
                 DrawGamepadMovementKeyBindArea();
             }
+
+            sprintProperty.DrawPropertyField();
+            InspectorUtility.DrawSpace();
             
+            DrawInteractionKeyBindArea();
             DrawUIKeyBinds();
             
             serializedObject.ApplyModifiedProperties();
@@ -83,8 +89,6 @@ namespace Editor.UI
             moveBackProperty.DrawPropertyField();
             moveLeftProperty.DrawPropertyField();
             moveRightProperty.DrawPropertyField();
-            
-            InspectorUtility.DrawSpace();
         }
         
         private void DrawGamepadMovementKeyBindArea()
@@ -92,10 +96,17 @@ namespace Editor.UI
             InspectorUtility.DrawHeader("Gamepad Movement Binds");
 
             movementProperty.DrawPropertyField();
+        }
+
+        private void DrawInteractionKeyBindArea()
+        {
+            InspectorUtility.DrawHeader("Interaction Binds");
+
+            interactProperty.DrawPropertyField();
             
             InspectorUtility.DrawSpace();
         }
-
+        
         private void DrawUIKeyBinds()
         {
             InspectorUtility.DrawHeader("UI Binds");

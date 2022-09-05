@@ -14,7 +14,7 @@ namespace UI
 
         private void Start()
         {
-            InputController.Instance.OnInputChanged += OnInputChangedCallback;
+            InputController.OnInputChanged += OnInputChangedCallback;
         }
 
         #endregion

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace InputSystem
 {
@@ -15,7 +14,7 @@ namespace InputSystem
         [SerializeField] private KeyBind _moveRightKeyBind = KeyBind.D;
         [SerializeField] private KeyBind _movementKeyBind = KeyBind.GamepadLeftStick;
         [SerializeField] private KeyBind _sprintKeyBind = KeyBind.LeftShift;
-        [SerializeField] private KeyBind _interactKeyBind = KeyBind.E;
+        [SerializeField] private KeyBind _interactKeyBind = KeyBind.F;
 
         [Header("Player UI")] 
         [SerializeField] private KeyBind _playerProfileKeyBind = KeyBind.U;

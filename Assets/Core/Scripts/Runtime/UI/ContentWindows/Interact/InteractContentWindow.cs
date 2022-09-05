@@ -50,13 +50,13 @@ namespace UI
             _interactionText.text = _interact;
             _pressText.gameObject.SetActive(!string.IsNullOrEmpty(_pressText.text));
             
-            InputController.Instance.OnKeyBindsChanged += Bind;
-            Bind(InputController.Instance.CurrentKeyBinds);
+            InputController.OnKeyBindsChanged += Bind;
+            Bind(InputController.CurrentKeyBinds);
         }
 
         private void OnDestroy()
         {
-            InputController.Instance.OnKeyBindsChanged -= Bind;
+            InputController.OnKeyBindsChanged -= Bind;
         }
 
         #endregion
@@ -73,15 +73,15 @@ namespace UI
             var key = keyBindings.InteractKeyBind;
 
             // Not keyboard
-            if (InputController.Instance.InputType != InputType.Keyboard)
+            if (InputController.InputType != InputType.Keyboard)
             {
                 _keyboardKeyText.enabled = false;
-                _keyBindImage.sprite = InputActionRegistry.Instance.KeyCodeToImage(key);
+                _keyBindImage.sprite = InputActionRegistry.KeyCodeToImage(key);
                 return;
             }
 
             // Keyboard
-            _keyBindImage.sprite = InputActionRegistry.Instance.GetKeyboardKeyImage();
+            _keyBindImage.sprite = InputActionRegistry.GetKeyboardKeyImage();
             _keyboardKeyText.enabled = true;
             _keyboardKeyText.text = InputActionRegistry.EnumToString(key);
         }

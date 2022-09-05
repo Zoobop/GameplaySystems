@@ -18,12 +18,16 @@ ui_settings_audio,Audio,サウンド
 ui_settings_controls,Controls,コントロール
 ui_settings_accessibility,Accessibility,アクセシビリティ
 ui_settings_default,Default,ディフォルト
+ui_settings_reset,Reset,リセット
 ui_settings_reset_default,Reset To Default,リセット
 ui_settings_controls_input_type,Input Type,入力
+ui_settings_controls_sensitivity,Sensitivity,感度
+ui_settings_controls_key_binds,Key Binds,キーバインド
 ui_settings_controls_mnk,Mouse and Keyboard,マウスとキーボード
 ui_settings_controls_gamepad,Controller,コントローラー
-ui_settings_controls_mouse_horizontal,Mouse Sensitivity Horizontal,マウス感度（右左）
-ui_settings_controls_mouse_vertical,Mouse Sensitivity Vertical,マウス感度（上下）
+ui_settings_controls_mouse_sensitivity,Mouse Sensitivity,マウス感度
+ui_settings_controls_mouse_horizontal,Mouse Horizontal Scale,マウス規模（右左）
+ui_settings_controls_mouse_vertical,Mouse Vertical Scale,マウス規模（上下）
 ui_settings_controls_mouse_invert_horizontal,Mouse Invert Horizontal,マウス反転（右左）
 ui_settings_controls_mouse_invert_vertical,Mouse Invert Vertical,マウス反転（上下）
 ui_settings_controls_gamepad_horizontal,Controller Horizontal,コントローラー感度（右左）

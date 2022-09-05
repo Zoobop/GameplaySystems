@@ -32,7 +32,7 @@ namespace CameraSystem
 
         private void Start()
         {
-            _moveAction = InputController.Instance.GetPlayerInputAction("Move");
+            _moveAction = InputController.GetPlayerInputAction("Move");
         }
 
         private void Update()

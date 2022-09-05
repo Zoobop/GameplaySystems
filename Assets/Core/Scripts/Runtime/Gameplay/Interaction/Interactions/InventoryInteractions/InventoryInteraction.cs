@@ -54,7 +54,7 @@ namespace InteractionSystem
         {
             base.OnStart();
 
-            InputController.Instance.DisableMovementActions();
+            InputController.DisableMovementActions();
         }
 
         public override void OnInteract(in ICharacter character)
@@ -69,7 +69,7 @@ namespace InteractionSystem
         {
             base.OnEnd();
 
-            InputController.Instance.EnableMovementActions();
+            InputController.EnableMovementActions();
         }
 
         #endregion

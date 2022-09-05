@@ -52,7 +52,7 @@ namespace InteractionSystem
         private void Start()
         {
             _interactContentWindow = InteractContentWindow.Instance;
-            _interactionAction = InputController.Instance.GetPlayerInputAction("Interact");
+            _interactionAction = InputController.GetPlayerInputAction("Interact");
         }
 
         protected override void OnValidate()

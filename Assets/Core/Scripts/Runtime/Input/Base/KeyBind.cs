@@ -17,6 +17,7 @@ namespace InputSystem
         Minus,
         Plus,
         Equals,
+        Shift,
         LeftShift,
         RightShift,
         Tab,

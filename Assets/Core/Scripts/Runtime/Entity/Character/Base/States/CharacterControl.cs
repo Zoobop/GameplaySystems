@@ -23,7 +23,7 @@ namespace Entity
         {
             _characterMovement = movement;
             _navMeshAgent = navMeshAgent;
-            _movementAction = InputController.Instance.GetPlayerInputAction("Move");
+            _movementAction = InputController.GetPlayerInputAction("Move");
             _movementSpeed = movement.GetMovementSpeed();
             _sprintModifier = movement.GetSprintModifier();
         }
@@ -32,7 +32,7 @@ namespace Entity
 
         public override void OnEnter()
         {
-            InputController.Instance.SetCallback("Sprint", ToggleSprint);
+            InputController.SetCallback("Sprint", ToggleSprint);
             _rigidbody.mass = 1f;
             _rigidbody.isKinematic = false;
             _navMeshAgent.enabled = false;
@@ -68,7 +68,7 @@ namespace Entity
         {
             _rigidbody.isKinematic = true;
             _navMeshAgent.enabled = true;
-            InputController.Instance.RemoveCallback("Sprint", ToggleSprint);
+            InputController.RemoveCallback("Sprint", ToggleSprint);
         }
 
         #endregion

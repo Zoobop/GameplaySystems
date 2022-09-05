@@ -17,8 +17,8 @@ namespace UI
 
         private void Start()
         {
-            InputController.Instance.OnKeyBindsChanged += Bind;
-            Bind(InputController.Instance.CurrentKeyBinds);
+            InputController.OnKeyBindsChanged += Bind;
+            Bind(InputController.CurrentKeyBinds);
         }
 
         #endregion
@@ -28,15 +28,15 @@ namespace UI
             var key = bindings[_actionName];
             
             // Not keyboard
-            if (InputController.Instance.InputType != InputType.Keyboard)
+            if (InputController.InputType != InputType.Keyboard)
             {
                 _keyboardKeyText.enabled = false;
-                _keyBindImage.sprite = InputActionRegistry.Instance.KeyCodeToImage(key);
+                _keyBindImage.sprite = InputActionRegistry.KeyCodeToImage(key);
                 return;
             }
 
             // Keyboard
-            _keyBindImage.sprite = InputActionRegistry.Instance.GetKeyboardKeyImage();
+            _keyBindImage.sprite = InputActionRegistry.GetKeyboardKeyImage();
             _keyboardKeyText.enabled = true;
             _keyboardKeyText.text = InputActionRegistry.EnumToString(key);
         }

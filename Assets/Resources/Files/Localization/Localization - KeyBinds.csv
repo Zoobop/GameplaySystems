@@ -1,0 +1,12 @@
+key,en,jp
+key_binds_move_forward,Move Forward,前方に動く
+key_binds_move_left,Move Left,左に動く
+key_binds_move_back,Move Back,後方に動く
+key_binds_move_right,Move Right,右に動く
+key_binds_movement,Move,動き回る
+key_binds_look,Look,見回す
+key_binds_sprint,Sprint,スプリント
+key_binds_interact,Interact,インタラクト
+key_binds_tab_left,Tab Left,左にタブ
+key_binds_tab_right,Tab Right,右にタブ
+key_binds_settings_menu,Open Settings Menu,設定を開く

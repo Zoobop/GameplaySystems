@@ -8,12 +8,14 @@ namespace InputSystem
     {
         public static InputActionRegistry Instance { get; private set; }
 
-        [Header("Keyboard Sprites")] [SerializeField]
-        private Sprite _keyboardKey;
+        [Header("Keyboard Sprites")] 
+        [SerializeField] private Sprite _keyboardKey;
+        [SerializeField] private Sprite _leftMouseButton;
+        [SerializeField] private Sprite _middleMouseButton;
+        [SerializeField] private Sprite _rightMouseButton;
 
-        [Header("Button Sprites")] [SerializeField]
-        private Sprite _gamepadButtonSouth;
-
+        [Header("Button Sprites")]
+        [SerializeField] private Sprite _gamepadButtonSouth;
         [SerializeField] private Sprite _gamepadButtonEast;
         [SerializeField] private Sprite _gamepadButtonWest;
         [SerializeField] private Sprite _gamepadButtonNorth;
@@ -66,6 +68,9 @@ namespace InputSystem
             {KeyBind.N0, "<Keyboard>/0"},
             {KeyBind.Escape, "<Keyboard>/escape"},
             {KeyBind.Delete, "<Keyboard>/delete"},
+            {KeyBind.Shift, "<Keyboard>/shift"},
+            {KeyBind.LeftShift, "<Keyboard>/leftShift"},
+            {KeyBind.RightShift, "<Keyboard>/rightShift"},
             {KeyBind.GamepadButtonSouth, "<Gamepad>/buttonSouth"},
             {KeyBind.GamepadButtonEast, "<Gamepad>/buttonEast"},
             {KeyBind.GamepadButtonWest, "<Gamepad>/buttonWest"},
@@ -83,13 +88,6 @@ namespace InputSystem
         private void Awake()
         {
             Instance = this;
-
-            GetInputBindSprites();
-        }
-
-        private void OnValidate()
-        {
-            _inputBindImages.Clear();
 
             GetInputBindSprites();
         }
@@ -119,28 +117,28 @@ namespace InputSystem
             _inputBindImages.TryAdd(KeyCodeToBindingString(KeyBind.GamepadRightStickClick), _gamepadRightStickClick);
         }
 
-        public Sprite GetKeyboardKeyImage()
+        public static Sprite GetKeyboardKeyImage()
         {
-            return _keyboardKey;
+            return Instance._keyboardKey;
         }
 
-        public string KeyCodeToBindingString(KeyBind key)
+        public static string KeyCodeToBindingString(KeyBind key)
         {
-            return _inputRegistry.TryGetValue(key, out var path) ? path : null;
+            return Instance._inputRegistry.TryGetValue(key, out var path) ? path : null;
         }
 
-        public Sprite KeyCodeToImage(KeyBind key)
+        public static Sprite KeyCodeToImage(KeyBind key)
         {
             var path = KeyCodeToBindingString(key);
             if (path == null)
                 return null;
 
-            return _inputBindImages.TryGetValue(path, out var sprite) ? sprite : null;
+            return Instance._inputBindImages.TryGetValue(path, out var sprite) ? sprite : null;
         }
 
-        public KeyBind BindingStringToKeyCode(string binding)
+        public static KeyBind BindingStringToKeyCode(string binding)
         {
-            var pairs = _inputRegistry.ToList();
+            var pairs = Instance._inputRegistry.ToList();
             foreach (var (key, path) in pairs)
             {
                 if (path.Equals(binding))
@@ -150,11 +148,7 @@ namespace InputSystem
             return KeyBind.None;
         }
 
-        public List<KeyBind> GetKeyCodes() => _inputRegistry.Keys.ToList();
-
-        #endregion
-
-        #region Static
+        public List<KeyBind> GetKeyCodes() => Instance._inputRegistry.Keys.ToList();
 
         public static string EnumToString(KeyBind key)
         {
@@ -162,7 +156,7 @@ namespace InputSystem
             if (keyName.StartsWith('N') && keyName.Length == 2) return $"{keyName[1]}";
             return keyName;
         }
-
+        
         #endregion
     }
 }

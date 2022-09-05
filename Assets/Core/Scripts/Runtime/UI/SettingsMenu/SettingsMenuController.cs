@@ -48,9 +48,9 @@ namespace UI
             Show();
             _isOpen = true;
 
-            InputController.Instance.DisableMovementActions();
-            InputController.Instance.DisableInteractionActions();
-            InputController.Instance.SetCurrentTabController(_tabController);
+            InputController.DisableMovementActions();
+            InputController.DisableInteractionActions();
+            InputController.SetCurrentTabController(_tabController);
         }
         
         public void CloseMenu()
@@ -58,9 +58,9 @@ namespace UI
             Hide();
             _isOpen = false;
             
-            InputController.Instance.RemoveCurrentTabController();
-            InputController.Instance.EnableMovementActions();
-            InputController.Instance.EnableInteractionActions();
+            InputController.RemoveCurrentTabController();
+            InputController.EnableMovementActions();
+            InputController.EnableInteractionActions();
         }
 
         public void Toggle()
