@@ -43,7 +43,7 @@ namespace DialogueSystem
             _speaker = null;
             _dialoguePanel.Disable();
 
-            UIController.Instance.ShowHUD();
+            UIController.ShowHUD();
             Hide();
         }
 
@@ -58,7 +58,7 @@ namespace DialogueSystem
             _dialoguePanel.Enable();
             NextDialogue(dialogue);
 
-            UIController.Instance.HideHUD();
+            UIController.HideHUD();
             Show();
 
             // Invoke event

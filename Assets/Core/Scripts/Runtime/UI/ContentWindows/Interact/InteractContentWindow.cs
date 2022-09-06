@@ -18,8 +18,8 @@ namespace UI
         [Header("References")] [SerializeField]
         private InteractionsPanel _interactionsPanel;
 
-        [SerializeField] private Canvas _interactTriggerCanvas;
-        [SerializeField] private Canvas _interactionsCanvas;
+        [SerializeField] private GameObject _interactTriggerCanvas;
+        [SerializeField] private GameObject _interactionsCanvas;
         [SerializeField] private TextMeshProUGUI _pressText;
         [SerializeField] private TextMeshProUGUI _interactionText;
         [SerializeField] private TextMeshProUGUI _keyboardKeyText;
@@ -102,8 +102,8 @@ namespace UI
             SetCanvas(true);
 
             // Show trigger panel
-            _interactTriggerCanvas.enabled = true;
-            _interactionsCanvas.enabled = false;
+            _interactTriggerCanvas.SetActive(true);
+            _interactionsCanvas.SetActive(false);
 
             // Parent implementation
             yield return base.Show(target);
@@ -124,15 +124,15 @@ namespace UI
 
         public void CancelInteraction()
         {
-            _interactTriggerCanvas.enabled = true;
-            _interactionsCanvas.enabled = false;
+            _interactTriggerCanvas.SetActive(true);
+            _interactionsCanvas.SetActive(false);
             _interactionInitiator.StopInteracting();
         }
 
         private void SetInteractionsPanel()
         {
-            _interactionsCanvas.enabled = true;
-            _interactTriggerCanvas.enabled = false;
+            _interactionsCanvas.SetActive(true);
+            _interactTriggerCanvas.SetActive(false);
         }
 
         public void ShowInteractions(IEnumerable<IInteraction> interactions)

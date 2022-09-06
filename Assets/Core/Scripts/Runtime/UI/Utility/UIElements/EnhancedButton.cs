@@ -33,6 +33,15 @@ namespace UI
         private void Awake()
         {
             _button = GetComponentInChildren<Button>();
+            
+            // Apply colors
+            _button.interactable = _isActive;
+            _button.colors = _buttonColors;
+            _buttonText.text = _text;
+            _buttonText.color = _textColor;
+
+            // Apply events
+            _button.onClick = _events;
         }
 
         protected override void OnValidate()
@@ -59,12 +68,12 @@ namespace UI
 
         public override void AddListener(UnityAction action)
         {
-            _events.AddListener(action);
+            _button.onClick.AddListener(action);
         }
 
         public override void RemoveListener(UnityAction action)
         {
-            _events.RemoveListener(action);
+            _button.onClick.RemoveListener(action);
         }
         
         public override void Enable()

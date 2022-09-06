@@ -35,7 +35,7 @@ namespace Entity
             InputController.SetCallback("Sprint", ToggleSprint);
             _rigidbody.mass = 1f;
             _rigidbody.isKinematic = false;
-            _navMeshAgent.enabled = false;
+            //_navMeshAgent.enabled = false;
         }
 
         public override void OnTick()
@@ -67,7 +67,7 @@ namespace Entity
         public override void OnExit()
         {
             _rigidbody.isKinematic = true;
-            _navMeshAgent.enabled = true;
+            //_navMeshAgent.enabled = true;
             InputController.RemoveCallback("Sprint", ToggleSprint);
         }
 

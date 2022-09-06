@@ -25,6 +25,12 @@ namespace UI
         private void Awake()
         {
             _dropdown = GetComponentInChildren<TMP_Dropdown>();
+            
+            if (_options.IsEmpty()) _placeholderText.text = "N/A";
+
+            // Refresh options
+            _dropdown.ClearOptions();
+            _dropdown.AddOptions(_options);
         }
 
         protected override void OnValidate()

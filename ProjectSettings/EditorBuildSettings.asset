@@ -6,20 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Core/Scenes/_Booter.unity
+    guid: c34e42d2c044fbe4e9b4c1fbc059b55f
+  - enabled: 1
     path: Assets/Core/Scenes/ManagersScene.unity
     guid: b3c210c8010dac34892fa999a6ca83bb
   - enabled: 1
-    path: Assets/Core/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Core/Scenes/UIOnlyScene.unity
+    guid: a8edbae6a1c44014ca3ad0182e0fe4a7
+  - enabled: 1
+    path: Assets/Core/Scenes/MainMenu.unity
+    guid: 50bdc177ef7267047832753401597345
   - enabled: 1
     path: Assets/Demo/Scenes/Demo.unity
     guid: c13ddccae3ea15342a110dc59d12c795
   - enabled: 1
     path: Assets/Core/Scenes/CameraRendering.unity
     guid: 3a79f72d2f2d76d4ab2f4e2cdaf9a24d
-  - enabled: 1
-    path: Assets/Core/Scenes/UIOnlyScene.unity
-    guid: a8edbae6a1c44014ca3ad0182e0fe4a7
   - enabled: 1
     path: Assets/Core/Scenes/DialogueHandling.unity
     guid: d9f07b1debb67624c90994fd65300202

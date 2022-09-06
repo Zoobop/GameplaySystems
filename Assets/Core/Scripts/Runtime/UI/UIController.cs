@@ -13,6 +13,8 @@ namespace UI
         [SerializeField] private HUDController _hudController;
         [SerializeField] private ContentWindowsController _contentWindowController;
         [SerializeField] private PlayerMenuController _playerMenuController;
+        [SerializeField] private SettingsMenuController _settingsMenuController;
+        [SerializeField] private GameObject _settingsDisplay;
 
         private CameraManager _cameraManager;
         private InputController _inputController;
@@ -26,8 +28,6 @@ namespace UI
             Instance = this;
 
             GameManager.OnPlayerChanged += OnPlayerChangedCallback;
-
-            ShowHUD();
         }
 
         private void Start()
@@ -51,31 +51,58 @@ namespace UI
 
         #region UIDisplay
 
-        public void ShowHUD()
+        public static void ShowHUD()
         {
-            _hudController.Show();
+            Instance._hudController.Show();
         }
 
-        public void HideHUD()
+        public static void HideHUD()
         {
-            _hudController.Hide();
+            Instance._hudController.Hide();
         }
 
         public void ShowContentWindow()
         {
-            _contentWindowController.Show();
+            Instance._contentWindowController.Show();
         }
 
         public void HideContentWindow()
         {
-            _contentWindowController.Hide();
+            Instance._contentWindowController.Hide();
+        }
+
+        public void ShowSettingsMenu()
+        {
+            Instance._settingsMenuController.Show();
+        }
+        
+        public void HideSettingsMenu()
+        {
+            Instance._settingsMenuController.Hide();
         }
 
         #endregion
 
-        #region PlayerMenu
+        #region Utility
 
+        public static void EnableUI()
+        {
+            Instance.SetUIStatus(true);
+        }
 
+        public static void DisableUI()
+        {
+            Instance.SetUIStatus(false);
+        }
+
+        private void SetUIStatus(bool state)
+        {
+            _hudController.gameObject.SetActive(state);
+            _contentWindowController.gameObject.SetActive(state);
+            _playerMenuController.gameObject.SetActive(state);
+            _settingsMenuController.gameObject.SetActive(state);
+            _settingsDisplay.SetActive(state);
+        }
 
         #endregion
     }

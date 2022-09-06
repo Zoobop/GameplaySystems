@@ -49,10 +49,7 @@ namespace Entity
 
         private void OnValidate()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-
-            _navMeshAgent.speed = _movementSpeed;
-            _navMeshAgent.stoppingDistance = _stoppingDistance;
+            
         }
 
         #endregion
@@ -97,7 +94,7 @@ namespace Entity
 
         public void FollowTarget(ICharacter target)
         {
-            _followCoroutine = StartCoroutine(Follow(target));
+            //_followCoroutine = StartCoroutine(Follow(target));
         }
 
         public void StopFollowing()
@@ -178,7 +175,7 @@ namespace Entity
             while (target != null)
             {
                 var targetPosition = target.GetTransform().position;
-                _navMeshAgent.SetDestination(targetPosition);
+                //_navMeshAgent.SetDestination(targetPosition);
 
                 yield return _aiTickDelay;
             }

@@ -588,7 +588,7 @@ MonoBehaviour:
     _key: Title
   _name:
     _key: Name
-  _fullName: ' '
+  _fullName: 
   _fullNameFormatIndex: 0
   _gold: 0
 --- !u!114 &5490014708872502603
@@ -662,7 +662,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6163852358986825997}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 4

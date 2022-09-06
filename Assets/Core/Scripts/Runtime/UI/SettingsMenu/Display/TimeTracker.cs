@@ -20,6 +20,8 @@ namespace UI
 
         private void Update()
         {
+            if (DayCycle.Instance == null) return;
+            
             if (!SettingsController.Instance.DisplayTime)
             {
                 _timeText.enabled = false;

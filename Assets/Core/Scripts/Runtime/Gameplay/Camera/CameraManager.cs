@@ -30,7 +30,9 @@ namespace CameraSystem
         private void OnPlayerChangedCallBack(ICharacter player)
         {
             // Assign camera focus
+            _characterCamera.SetPlayer(player);
             _characterCamera.SetFocus(player.GetTransform());
+            _characterCamera.gameObject.SetActive(true);
         }
 
         #endregion

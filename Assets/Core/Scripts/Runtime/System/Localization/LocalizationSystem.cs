@@ -92,6 +92,7 @@ namespace LocalizationSystem
             return string.Empty;
         }
 
+#if UNITY_EDITOR
         public static void Add(string key, string value)
         {
             if (value.Contains("\""))
@@ -137,5 +138,6 @@ namespace LocalizationSystem
             
             UpdateLocalizationMaps();
         }
+#endif
     }
 }

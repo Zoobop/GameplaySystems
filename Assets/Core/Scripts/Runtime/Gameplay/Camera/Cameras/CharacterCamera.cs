@@ -24,8 +24,6 @@ namespace CameraSystem
 
         private void Awake()
         {
-            GameManager.OnPlayerChanged += OnPlayerChangedCallback;
-            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -57,7 +55,7 @@ namespace CameraSystem
 
         #endregion
 
-        private void OnPlayerChangedCallback(ICharacter player)
+        public void SetPlayer(ICharacter player)
         {
             // Get player information
             _player = player.GetTransform();

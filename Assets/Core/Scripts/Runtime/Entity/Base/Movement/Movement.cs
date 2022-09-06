@@ -23,7 +23,7 @@ namespace Entity
         {
             _rigidbody = GetComponent<Rigidbody>();
             _animator = GetComponent<IAnimator>();
-            _navMeshAgent = GetComponent<NavMeshAgent>();
+            //_navMeshAgent = GetComponent<NavMeshAgent>();
             _orientation = transform.Find("Orientation");
         }
 

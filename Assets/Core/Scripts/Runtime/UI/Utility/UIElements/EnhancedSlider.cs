@@ -19,6 +19,11 @@ namespace UI
         private void Awake()
         {
             _slider = GetComponentInChildren<Slider>();
+            
+            _slider.minValue = _minValue;
+            _slider.maxValue = _maxValue;
+            _slider.value = _currentValue;
+            _slider.onValueChanged = _events;
         }
 
         protected override void OnValidate()
