@@ -28,6 +28,9 @@ namespace UI
         [SerializeField] private EnhancedToggle _gamepadInvertHorizontalToggle;
         [SerializeField] private EnhancedToggle _gamepadInvertVerticalToggle;
 
+        private readonly LocalizedString MouseAndKeyboard = new LocalizedString("ui_settings_controls_mnk");
+        private readonly LocalizedString Controller = new LocalizedString("ui_settings_controls_gamepad");
+        
         #region UnityEvents
 
         private void Awake()
@@ -51,6 +54,8 @@ namespace UI
 
         private void BindUIElements()
         {
+            LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
+            
             _inputTypeDropdown.AddListener(SetInputType);
             _mouseSensitivitySlider.AddListener(SetMouseSensitivity);
             _mouseHorizontalScaleSlider.AddListener(SetMouseHorizontalScale);
@@ -65,6 +70,8 @@ namespace UI
 
         private void UnbindUIElements()
         {
+            LocalizationSystem.OnLanguageChanged -= OnLanguageChangedCallback;
+            
             _inputTypeDropdown.RemoveListener(SetInputType);
             _mouseSensitivitySlider.RemoveListener(SetMouseSensitivity);
             _mouseHorizontalScaleSlider.RemoveListener(SetMouseHorizontalScale);
@@ -79,7 +86,7 @@ namespace UI
         
         private void SetupSettings()
         {
-            var names = new List<string> { new LocalizedString("ui_settings_controls_mnk"), new LocalizedString("ui_settings_controls_gamepad") };
+            var names = new List<string> { MouseAndKeyboard, Controller };
 
             // UI Setup
             _inputTypeDropdown.SetOptions(names);
@@ -103,6 +110,13 @@ namespace UI
             _gamepadVerticalSensitivitySlider.SetValue(settings.GamepadSensitivityVertical);
             _gamepadInvertHorizontalToggle.SetValue(settings.GamepadInvertHorizontal);
             _gamepadInvertVerticalToggle.SetValue(settings.GamepadInvertVertical);
+        }
+
+        private void OnLanguageChangedCallback(LocalizationSystem.Language language)
+        {
+            var names = new List<string> {MouseAndKeyboard, Controller};
+
+            _inputTypeDropdown.SetOptionsText(names);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,9 +11,8 @@ namespace UI
     
     public class InteractionsPanel : MonoBehaviour
     {
-        [Header("References")] [SerializeField]
-        private Transform _contentHolder;
-
+        [Header("References")]
+        [SerializeField] private Transform _contentHolder;
         [SerializeField] private GameObject _leaveOption;
         [SerializeField] private TextMeshProUGUI _leaveText;
         [SerializeField] private GameObject _interactionOptionPrefab;
@@ -28,8 +28,15 @@ namespace UI
         private void Awake()
         {
             GameManager.OnPlayerChanged += OnPlayerChangedCallback;
+            LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
 
             _leaveText.text = $"   [{_leave}]";
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.OnPlayerChanged -= OnPlayerChangedCallback;
+            LocalizationSystem.OnLanguageChanged -= OnLanguageChangedCallback;
         }
 
         #endregion
@@ -37,6 +44,11 @@ namespace UI
         private void OnPlayerChangedCallback(ICharacter player)
         {
             _player = player;
+        }
+
+        private void OnLanguageChangedCallback(LocalizationSystem.Language language)
+        {
+            _leaveText.text = $"   [{_leave}]";
         }
 
         public void Bind(IEnumerable<IInteraction> interactions)

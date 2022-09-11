@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI
 {
+    using LocalizationSystem;
+    
     public class TabController : MonoBehaviour
     {
         [SerializeField] private List<TabContentPair> _tabs = new();
@@ -10,13 +13,27 @@ namespace UI
 
         #region UnityEvents
 
+        private void Awake()
+        {
+            LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
+        }
+
         private void Start()
         {
+
             MapTabActions();
         }
         
         #endregion
 
+        private void OnLanguageChangedCallback(LocalizationSystem.Language language)
+        {
+            foreach (var pair in _tabs)
+            {
+                pair.UpdateText();
+            }
+        }
+        
         private void MapTabActions()
         {
             foreach (var pair in _tabs)

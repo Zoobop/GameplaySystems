@@ -42,6 +42,7 @@ namespace UI
             Instance = this;
 
             GameManager.OnPlayerChanged += OnPlayerChangedCallback;
+            LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
         }
 
         private void Start()
@@ -57,6 +58,8 @@ namespace UI
         private void OnDestroy()
         {
             InputController.OnKeyBindsChanged -= Bind;
+            GameManager.OnPlayerChanged -= OnPlayerChangedCallback;
+            LocalizationSystem.OnLanguageChanged -= OnLanguageChangedCallback;
         }
 
         #endregion
@@ -64,6 +67,13 @@ namespace UI
         private void OnPlayerChangedCallback(ICharacter player)
         {
             _interactionInitiator = player.GetInteractionInitiator();
+        }
+        
+        private void OnLanguageChangedCallback(LocalizationSystem.Language language)
+        {
+            _pressText.text = _press;
+            _interactionText.text = _interact;
+            _pressText.gameObject.SetActive(!string.IsNullOrEmpty(_pressText.text));
         }
 
         #region WindowUtility

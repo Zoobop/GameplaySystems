@@ -16,8 +16,8 @@ namespace Settings
         
         /* GRAPHICS */
         [field: Header("Graphics Settings")]
-        [field: SerializeField] public bool DisplayFPS { get; set; } = true;
-        [field: SerializeField] public bool DisplayTime { get; set; } = true;
+        [field: SerializeField] public FullScreenMode WindowMode { get; set; } = FullScreenMode.MaximizedWindow;
+        [field: SerializeField, Range(0f, 1f)] public float Gamma { get; set; } = 0.5f;
 
         /* AUDIO */
         [field: Header("Audio Settings")]
@@ -40,18 +40,21 @@ namespace Settings
         [field: SerializeField] public bool GamepadInvertVertical { get; set; } = false;
         
         /* ACCESSIBILITY */
+        [field: Header("Accessibility Settings")]
+        [field: SerializeField] public bool DisplayFPS { get; set; } = true;
+        [field: SerializeField] public bool DisplayTime { get; set; } = true;
         
         #region UnityEvents
 
         private void Awake()
         {
             Instance = this;
-            LocalizationSystem.SetLanguage(CurrentLanguage);
         }
 
         private void Start()
         {
             InputController.SetInputType(InputType);
+            LocalizationSystem.SetLanguage(CurrentLanguage);
         }
 
         #endregion
@@ -64,13 +67,45 @@ namespace Settings
 
         #region GraphicsSettings
 
-        
+        public static void SetWindowMode(int index)
+        {
+            Instance.WindowMode = (FullScreenMode) index;
+            Screen.fullScreenMode = Instance.WindowMode;
+        }
+
+        public static void SetGamma(float gamma)
+        {
+            Instance.Gamma = gamma;
+            Screen.brightness = gamma;
+        }
 
         #endregion
 
         #region AudioSettings
 
+        public static void SetMasterVolume(float volume)
+        {
+            Instance.MasterVolume = volume;
+            AudioController.SetMasterVolume(volume);
+        }
         
+        public static void SetMainMenuVolume(float volume)
+        {
+            Instance.MainMenuVolume = volume;
+            AudioController.SetMainMenuVolume(volume);
+        }
+        
+        public static void SetBGMVolume(float volume)
+        {
+            Instance.BGMVolume = volume;
+            AudioController.SetBGMVolume(volume);
+        }
+        
+        public static void SetSfxVolume(float volume)
+        {
+            Instance.SoundEffectsVolume = volume;
+            AudioController.SetSfxVolume(volume);
+        }
 
         #endregion
 
@@ -131,7 +166,21 @@ namespace Settings
 
         #region AccessibilitySettings
 
+        public static void SetLanguage(int index)
+        {
+            Instance.CurrentLanguage = (LocalizationSystem.Language) index;
+            LocalizationSystem.SetLanguage(Instance.CurrentLanguage);
+        }
+
+        public static void SetDisplayFps(bool state)
+        {
+            Instance.DisplayFPS = state;
+        }
         
+        public static void SetDisplayTime(bool state)
+        {
+            Instance.DisplayTime = state;
+        }
 
         #endregion
     }

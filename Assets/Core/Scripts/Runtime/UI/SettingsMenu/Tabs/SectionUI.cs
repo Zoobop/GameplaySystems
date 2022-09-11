@@ -6,8 +6,7 @@ using UnityEngine;
 namespace UI
 {
     using LocalizationSystem;
-    using InputSystem;
-    
+
     public class SectionUI : MonoBehaviour
     {
         [Header("References")]
@@ -23,6 +22,11 @@ namespace UI
         private void Awake()
         {
             LocalizationSystem.OnLanguageChanged += MapTexts;
+        }
+        
+        private void Start()
+        {
+            MapTexts(LocalizationSystem.CurrentLanguage);
         }
 
         #endregion

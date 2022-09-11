@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 using RebindOperation = UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
@@ -30,6 +28,20 @@ namespace UI
         private string _keyBindName;
         private int _relativeIndex;
 
+        #region UnityEvents
+
+        private void Awake()
+        {
+            LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
+        }
+
+        private void OnDestroy()
+        {
+            LocalizationSystem.OnLanguageChanged -= OnLanguageChangedCallback;
+        }
+
+        #endregion
+        
         private void UpdateUI()
         {
             // Update key bind action text
@@ -48,6 +60,12 @@ namespace UI
             _keyBindImage.enabled = true;
             _keyBindImage.sprite = InputActionRegistry.KeyCodeToImage(_keyBind);
             _bindButtonText.enabled = false;
+        }
+        
+        private void OnLanguageChangedCallback(LocalizationSystem.Language language)
+        {
+            _displayText.text = _displayName;
+            _resetButtonText.text = _resetButtonName;
         }
 
         public void AssignBinding(string actionName, KeyBind keyBind, InputType inputType)

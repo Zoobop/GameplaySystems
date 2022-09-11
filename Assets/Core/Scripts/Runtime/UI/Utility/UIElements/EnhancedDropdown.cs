@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -103,10 +104,10 @@ namespace UI
             _placeholderText.text = PlaceHolderText;
         }
 
-        public void Apply()
+        public void Apply(int value = 0)
         {
-            _dropdown.value = 0;
-            _placeholderText.text = _dropdown.options[0].text;
+            _dropdown.value = value;
+            _placeholderText.text = _dropdown.options[value].text;
         }
         
         public void SetOptions(List<string> options)
@@ -138,6 +139,16 @@ namespace UI
             }
 
             //print($"[{string.Join(" - ", _dropdown.options.ConvertAll(data => data.text))}]");
+        }
+
+        public void SetOptionsText(IList<string> texts)
+        {
+            for (var i = 0; i < _dropdown.options.Count; i++)
+            {
+                _dropdown.options[i].text = texts[i];
+            }
+            
+            SetPlaceholderText(texts[_dropdown.value]);
         }
 
         public bool HaveOptionsChanged(List<string> options)

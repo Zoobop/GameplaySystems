@@ -19,6 +19,11 @@ namespace UI
             button.RemoveListener(tab.Enable);
         }
 
+        public void UpdateText()
+        {
+            button.SetText(tab.GetTabName());
+        }
+
         public void Deconstruct(out EnhancedButton button, out ITab tab)
         {
             button = this.button;

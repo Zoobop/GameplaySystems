@@ -16,7 +16,7 @@ public class SystemController : MonoBehaviour
     private const int RenderScene = 5;
     private const int DialogueScene = 6;
     
-    #region UnitEvents
+    #region UnityEvents
 
     private void Awake()
     {
@@ -53,6 +53,9 @@ public class SystemController : MonoBehaviour
     
     private static IEnumerator LoadCoreGameScenes()
     {
+        // Transition in
+        yield return TransitionController.StartTransition();
+        
         // Enable UI
         UIController.EnableUI();
         UIController.ShowHUD();
@@ -80,14 +83,21 @@ public class SystemController : MonoBehaviour
         {
             yield return null;
         }
+        
+        // Transition out
+        yield return TransitionController.StopTransition();
     }
 
     #endregion
     
     #region Load/Unload Helpers
 
-    private static IEnumerator LoadSceneAsync(int sceneIndex, LoadSceneMode loadSceneMode, bool unloadActiveScene = false)
+    private static IEnumerator LoadSceneAsync(int sceneIndex, LoadSceneMode loadSceneMode, bool unloadActiveScene = false, bool transition = false)
     {
+        // Transition in
+        if (transition)
+            yield return TransitionController.StartTransition();
+        
         // Set the current Scene to be able to unload it later
         var currentScene = SceneManager.GetActiveScene();
 
@@ -102,7 +112,19 @@ public class SystemController : MonoBehaviour
         
         // Unload the previous Scene
         if (unloadActiveScene)
-            SceneManager.UnloadSceneAsync(currentScene);
+        {
+            var asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
+            
+            // Wait until the last operation fully loads to return anything
+            while (!asyncUnload.isDone)
+            {
+                yield return null;
+            }
+        }
+        
+        // Transition out
+        if (transition)
+            yield return TransitionController.StopTransition();
     }
     
     private static IEnumerator UnloadSceneAsync(int sceneIndex, UnloadSceneOptions unloadSceneOptions = UnloadSceneOptions.None)
@@ -121,9 +143,9 @@ public class SystemController : MonoBehaviour
 
     #region Utility
     
-    public static void LoadScene(int sceneIndex, LoadSceneMode loadSceneMode, bool unloadActiveScene = false)
+    public static void LoadScene(int sceneIndex, LoadSceneMode loadSceneMode, bool unloadActiveScene = false, bool transition = false)
     {
-        Instance.StartCoroutine(LoadSceneAsync(sceneIndex, loadSceneMode, unloadActiveScene));
+        Instance.StartCoroutine(LoadSceneAsync(sceneIndex, loadSceneMode, unloadActiveScene, transition));
     }
 
     public static void UnloadScene(int sceneIndex, UnloadSceneOptions unloadSceneOptions = UnloadSceneOptions.None)
