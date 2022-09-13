@@ -5,7 +5,7 @@ namespace Settings
 {
     using LocalizationSystem;
     using InputSystem;
-    
+
     public class SettingsController : MonoBehaviour
     {
         public static SettingsController Instance { get; private set; }
@@ -16,6 +16,7 @@ namespace Settings
         
         /* GRAPHICS */
         [field: Header("Graphics Settings")]
+        [field: SerializeField] public int ResolutionIndex { get; set; } = 0;
         [field: SerializeField] public FullScreenMode WindowMode { get; set; } = FullScreenMode.MaximizedWindow;
         [field: SerializeField, Range(0f, 1f)] public float Gamma { get; set; } = 0.5f;
 
@@ -53,22 +54,38 @@ namespace Settings
 
         private void Start()
         {
-            InputController.SetInputType(InputType);
-            LocalizationSystem.SetLanguage(CurrentLanguage);
+            ApplyGeneralSettings();
+            ApplyGraphicsSettings();
+            ApplyAudioSettings();
+            ApplyControlsSettings();
+            ApplyAccessibilitySettings();
         }
 
         #endregion
 
         #region GeneralSettings
 
-        
+        private static void ApplyGeneralSettings()
+        {
+            
+        }
 
         #endregion
 
         #region GraphicsSettings
 
+        public static void SetResolution(int index)
+        {
+            Instance.ResolutionIndex = index;
+            var resolution = Screen.resolutions[index];
+            Screen.SetResolution(resolution.width, resolution.height, Instance.WindowMode);
+        }
+        
         public static void SetWindowMode(int index)
         {
+            if (index == 2)
+                ++index;
+            
             Instance.WindowMode = (FullScreenMode) index;
             Screen.fullScreenMode = Instance.WindowMode;
         }
@@ -77,6 +94,12 @@ namespace Settings
         {
             Instance.Gamma = gamma;
             Screen.brightness = gamma;
+        }
+        
+        private static void ApplyGraphicsSettings()
+        {
+            Screen.fullScreenMode = Instance.WindowMode;
+            Screen.brightness = Instance.Gamma;
         }
 
         #endregion
@@ -107,6 +130,14 @@ namespace Settings
             AudioController.SetSfxVolume(volume);
         }
 
+        private static void ApplyAudioSettings()
+        {
+            AudioController.SetMasterVolume(Instance.MasterVolume);
+            AudioController.SetMainMenuVolume(Instance.MainMenuVolume);
+            AudioController.SetBGMVolume(Instance.BGMVolume);
+            AudioController.SetSfxVolume(Instance.SoundEffectsVolume);
+        }
+        
         #endregion
 
         #region ControlsSettings
@@ -162,6 +193,11 @@ namespace Settings
             Instance.GamepadInvertVertical = value;
         }
 
+        private static void ApplyControlsSettings()
+        {
+            InputController.SetInputType(Instance.InputType);
+        }
+        
         #endregion
 
         #region AccessibilitySettings
@@ -180,6 +216,11 @@ namespace Settings
         public static void SetDisplayTime(bool state)
         {
             Instance.DisplayTime = state;
+        }
+        
+        private static void ApplyAccessibilitySettings()
+        {
+            LocalizationSystem.SetLanguage(Instance.CurrentLanguage);
         }
 
         #endregion

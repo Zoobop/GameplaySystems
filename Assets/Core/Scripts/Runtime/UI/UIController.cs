@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace UI
@@ -34,6 +35,11 @@ namespace UI
         {
             _cameraManager = CameraManager.Instance;
             _inputController = InputController.Instance;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.OnPlayerChanged -= OnPlayerChangedCallback;
         }
 
         #endregion

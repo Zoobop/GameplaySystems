@@ -34,15 +34,17 @@ public class SystemController : MonoBehaviour
 
     private static IEnumerator Initialize()
     {
-        // Managers Scene
-        var managersScene = SceneManager.LoadSceneAsync(ManagersScene, LoadSceneMode.Additive);
+        // Managers Scene (must load first)
+        yield return SceneManager.LoadSceneAsync(ManagersScene, LoadSceneMode.Additive);
+        // Rendering Scene (must load first)
+        yield return SceneManager.LoadSceneAsync(RenderScene, LoadSceneMode.Additive);
         // UI Scene
         var uiScene = SceneManager.LoadSceneAsync(UIScene, LoadSceneMode.Additive);
         // Main Menu
         var mainMenuScene = SceneManager.LoadSceneAsync(MainMenuScene, LoadSceneMode.Additive);
 
         // Await scenes completed
-        while (!managersScene.isDone || !uiScene.isDone || !mainMenuScene.isDone)
+        while (!uiScene.isDone || !mainMenuScene.isDone)
         {
             yield return null;
         }
@@ -59,10 +61,7 @@ public class SystemController : MonoBehaviour
         // Enable UI
         UIController.EnableUI();
         UIController.ShowHUD();
-        
-        // Rendering Scene (must load first)
-        yield return LoadSceneAsync(RenderScene, LoadSceneMode.Additive);
-        
+
         // Demo Scene
         var demoScene = SceneManager.LoadSceneAsync(DemoScene, LoadSceneMode.Additive);
         // Dialogue Handling Scene

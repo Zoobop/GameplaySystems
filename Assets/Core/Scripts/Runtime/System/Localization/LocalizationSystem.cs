@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 namespace LocalizationSystem
 {
-    using Entity;
-    
     public static class LocalizationSystem
     {
         public enum Language
@@ -16,8 +14,7 @@ namespace LocalizationSystem
         // Language mappings
         private static IDictionary<string, string> _localizedEN;
         private static IDictionary<string, string> _localizedJP;
-
-        private static CSVLoader _csvLoader;
+        
         private static bool _isInitialized;
 
         public static Language CurrentLanguage { get; private set; } = Language.English;
@@ -31,8 +28,7 @@ namespace LocalizationSystem
 
         public static void Init()
         {
-            _csvLoader = new CSVLoader();
-            _csvLoader.LoadCSV();
+            CsvLoader.LoadCsv();
 
             UpdateLocalizationMaps();
 
@@ -41,8 +37,8 @@ namespace LocalizationSystem
 
         private static void UpdateLocalizationMaps()
         {
-            _localizedEN = _csvLoader.GetLocalizationMap("en");
-            _localizedJP = _csvLoader.GetLocalizationMap("jp");
+            _localizedEN = CsvLoader.GetLocalizationMap("en");
+            _localizedJP = CsvLoader.GetLocalizationMap("jp");
         }
 
         public static void SetLanguage(Language language)
@@ -77,8 +73,8 @@ namespace LocalizationSystem
 
             return CurrentLanguage switch
             {
-                Language.English => _csvLoader.GetLocalizationMap("en"),
-                Language.Japanese => _csvLoader.GetLocalizationMap("jp"),
+                Language.English => CsvLoader.GetLocalizationMap("en"),
+                Language.Japanese => CsvLoader.GetLocalizationMap("jp"),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -100,24 +96,18 @@ namespace LocalizationSystem
                 value.Replace('"', '\"');
             }
 
-            // Instantiate if null
-            _csvLoader ??= new CSVLoader();
-            
-            _csvLoader.LoadCSV();
-            _csvLoader.Add(key, value);
-            _csvLoader.LoadCSV();
+            CsvLoader.LoadCsv();
+            CsvLoader.Add(key, value);
+            CsvLoader.LoadCsv();
             
             UpdateLocalizationMaps();
         }
 
         public static void Remove(string key)
         {
-            // Instantiate if null
-            _csvLoader ??= new CSVLoader();
-            
-            _csvLoader.LoadCSV();
-            _csvLoader.Remove(key);
-            _csvLoader.LoadCSV();
+            CsvLoader.LoadCsv();
+            CsvLoader.Remove(key);
+            CsvLoader.LoadCsv();
             
             UpdateLocalizationMaps();
         }
@@ -129,12 +119,9 @@ namespace LocalizationSystem
                 value.Replace('"', '\"');
             }
 
-            // Instantiate if null
-            _csvLoader ??= new CSVLoader();
-            
-            _csvLoader.LoadCSV();
-            _csvLoader.Edit(key, value);
-            _csvLoader.LoadCSV();
+            CsvLoader.LoadCsv();
+            CsvLoader.Edit(key, value);
+            CsvLoader.LoadCsv();
             
             UpdateLocalizationMaps();
         }

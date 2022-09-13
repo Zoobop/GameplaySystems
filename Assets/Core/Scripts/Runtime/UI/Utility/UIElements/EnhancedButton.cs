@@ -9,7 +9,8 @@ namespace UI
     
     public class EnhancedButton : EnhancedUI<bool, Button.ButtonClickedEvent, UnityAction>
     {
-        [Header("References")] 
+        [Header("References")]
+        [SerializeField] private Button _button;
         [SerializeField] private TextMeshProUGUI _buttonText;
         [SerializeField] private Image _buttonImage;
 
@@ -26,14 +27,10 @@ namespace UI
         [SerializeField] private Color _buttonBorderColor;
         [SerializeField] private Color _buttonBorderColorInactive;
 
-        private Button _button;
-
         #region UnityEvents
         
         private void Awake()
         {
-            _button = GetComponentInChildren<Button>();
-            
             // Apply colors
             _button.interactable = _isActive;
             _button.colors = _buttonColors;

@@ -7,47 +7,43 @@ using System.Text;
 
 namespace LocalizationSystem
 {
-    public class CSVLoader
+    public static class CsvLoader
     {
-        private const string CsvDirectory = @"Assets/Resources/Files/Localization/";
-        private static IEnumerable<string> _fileNames = new List<string>();
-        private string _allLocalizationMapText;
-        
-        private readonly char _lineSeperator = '\n';
-        private readonly string _fieldSeperator = ",";
+        private const string CsvDirectory = "Files/Localization/";
+        private static string _allLocalizationMapText;
 
-        public void LoadCSV()
+        private const char LineSeparator = '\n';
+        private const string FieldSeparator = ",";
+
+        public static void LoadCsv()
         {
-            _fileNames = Directory.GetFiles(CsvDirectory);
+            var files = Resources.LoadAll<TextAsset>(CsvDirectory);
             var allFileText = new StringBuilder();
-            foreach (var fileName in _fileNames)
+            foreach (var textAsset in files)
             {
-                if (!fileName.EndsWith(".csv")) continue;
-                var properPath = fileName.Replace(@"Assets/Resources/", "")[..^4];
-                var textAsset = Resources.Load<TextAsset>(properPath);
                 allFileText.Append(textAsset.text);
             }
 
             _allLocalizationMapText = allFileText.ToString();
         }
 
-        public IDictionary<string, string> GetLocalizationMap(string languageEncoding)
+        public static IDictionary<string, string> GetLocalizationMap(string languageEncoding)
         {
             // Create map
             var localizationMap = new Dictionary<string, string>();
             
             // Get file lines
-            var lines = _allLocalizationMapText.Split(_lineSeperator);
+            var lines = _allLocalizationMapText.Split(LineSeparator);
 
             // Find language map from language encoding
-            var languageEncodings = lines[0].Split(_fieldSeperator);
+            var languageEncodings = lines[0].Split(FieldSeparator);
             var languageIndex = FindKeyIndex(languageEncodings, languageEncoding);
 
             // Parse into dictionary
             for (var i = 1; i < lines.Length; i++)
             {
                 var line = lines[i];
-                var fields = line.Trim('\r').Split(_fieldSeperator);
+                var fields = line.Trim('\r').Split(FieldSeparator);
                 //Debug.LogWarning(string.Join(' ', fields));
 
                 if (fields.Length > languageIndex)
@@ -69,7 +65,7 @@ namespace LocalizationSystem
 #if UNITY_EDITOR
         #region EditorOnly
 
-        public void Add(string key, string value)
+        public static void Add(string key, string value)
         {
             var path = GetLocalizationMapPath(key);
             var fullPath = $"{CsvDirectory}{path}";
@@ -86,14 +82,14 @@ namespace LocalizationSystem
             UnityEditor.AssetDatabase.Refresh();
         }
 
-        public void Remove(string key)
+        public static void Remove(string key)
         {
-            var lines = _allLocalizationMapText.Split(_lineSeperator);
+            var lines = _allLocalizationMapText.Split(LineSeparator);
             var keys = new List<string>(lines.Length);
             
             foreach (var line in lines)
             {
-                keys.Add(line.Split(_fieldSeperator)[0]);
+                keys.Add(line.Split(FieldSeparator)[0]);
             }
 
             var index = FindKeyIndex(keys, key);
@@ -103,12 +99,12 @@ namespace LocalizationSystem
                 var fullPath = $"{CsvDirectory}{path}";
                 
                 var newLines = lines.Where(str => str != lines[index]);
-                var replaced = string.Join(_lineSeperator.ToString(), newLines);
+                var replaced = string.Join(LineSeparator.ToString(), newLines);
                 File.WriteAllText(fullPath, replaced);
             }
         }
 
-        public void Edit(string key, string value)
+        public static void Edit(string key, string value)
         {
             Remove(key);
             Add(key, value);
@@ -117,7 +113,7 @@ namespace LocalizationSystem
         private static string GetLocalizationMapPath(string key)
         {
             var path = string.Empty;
-            foreach (var fileName in _fileNames)
+            foreach (var fileName in ArraySegment<string>.Empty)
             {
                 if (fileName.ToUpper().Contains(key.ToUpper()))
                 {

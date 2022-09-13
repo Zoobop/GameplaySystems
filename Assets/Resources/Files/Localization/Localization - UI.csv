@@ -20,6 +20,18 @@ ui_settings_accessibility,Accessibility,アクセシビリティ
 ui_settings_default,Default,ディフォルト
 ui_settings_reset,Reset,リセット
 ui_settings_reset_default,Reset To Default,リセット
+ui_settings_graphics_display,Display,画面
+ui_settings_graphics_resolution,Resolution,解像度
+ui_settings_graphics_screen,Screen View,スクリーン表示
+ui_settings_graphics_gamma,Gamma,明度
+ui_settings_graphics_screen_fullscreen_windowed,Fullscreen Windowed,フルスクリーンウィンドウ
+ui_settings_graphics_screen_fullscreen,Fullscreen,フルスクリーン
+ui_settings_graphics_screen_windowed,Windowed,ウィンドウ
+ui_settings_audio_volume,Volume,音量
+ui_settings_audio_master,Master,マスター
+ui_settings_audio_main_menu,Main Menu,メインメニュー
+ui_settings_audio_bgm,BGM,BGM
+ui_settings_audio_sfx,SFX,SFX
 ui_settings_controls_input_type,Input Type,入力
 ui_settings_controls_sensitivity,Sensitivity,感度
 ui_settings_controls_key_binds,Key Binds,キーバインド
@@ -34,3 +46,6 @@ ui_settings_controls_gamepad_horizontal,Controller Horizontal,コントローラ
 ui_settings_controls_gamepad_vertical,Controller Vertical,コントローラー感度（上下）
 ui_settings_controls_gamepad_invert_horizontal,Controller Invert Horizontal,コントローラー反転（右左）
 ui_settings_controls_gamepad_invert_vertical,Controller Invert Vertical,コントローラー反転（上下）
+ui_settings_accessibility_language,Language,言語
+ui_settings_accessibility_display_fps,Display FPS,FPS表示
+ui_settings_accessibility_display_time,Display Time,時間表示

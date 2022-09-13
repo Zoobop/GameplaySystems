@@ -10,9 +10,8 @@ namespace UI
     {
         public static ContentWindowsController Instance { get; private set; }
 
-        [Header("Content Windows")] [SerializeField]
-        private InventoryContentWindow _inventoryWindow;
-
+        [Header("Content Windows")]
+        [SerializeField] private InventoryContentWindow _inventoryWindow;
         [SerializeField] private InteractContentWindow _interactWindow;
 
         #region UnityEvents

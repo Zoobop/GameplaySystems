@@ -6,12 +6,13 @@ namespace UI
     public class MainMenu : MonoBehaviour
     {
         [SerializeField] private EnhancedButton _playButton;
-        [SerializeField] private EnhancedButton _optionsButton;
 
         #region UnityEvents
 
         private void Start()
         {
+            AudioController.PlayMenuMusic();
+            
             _playButton.AddListener(Play);
         }
 
@@ -25,11 +26,8 @@ namespace UI
         private static void Play()
         {
             GameManager.Play();
-        }
-
-        private void Options()
-        {
             
+            AudioController.PlayBGM();
         }
     }
 }
