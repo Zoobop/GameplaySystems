@@ -11,6 +11,10 @@ namespace UI
     {
         [Header("Language")]
         [SerializeField] private EnhancedDropdown _languageDropdown;
+        
+        [Header("Info")]
+        [SerializeField] private EnhancedToggle _displayFpsToggle;
+        [SerializeField] private EnhancedToggle _displayTimeToggle;
 
         private readonly List<string> _languageNames = new List<string> {"English", "日本語"};
         
@@ -40,6 +44,8 @@ namespace UI
             LocalizationSystem.OnLanguageChanged += OnLanguageChangedCallback;
             
             _languageDropdown.AddListener(SetLanguage);
+            _displayFpsToggle.AddListener(SetDisplayFps);
+            _displayTimeToggle.AddListener(SetDisplayTime);
         }
 
         private void UnbindUIElements()
@@ -47,6 +53,8 @@ namespace UI
             LocalizationSystem.OnLanguageChanged -= OnLanguageChangedCallback;
             
             _languageDropdown.RemoveListener(SetLanguage);
+            _displayFpsToggle.RemoveListener(SetDisplayFps);
+            _displayTimeToggle.RemoveListener(SetDisplayTime);
         }
 
         private void SetupSettings()
@@ -59,6 +67,8 @@ namespace UI
             
             // Set default values
             _languageDropdown.SetValue((int)settings.CurrentLanguage);
+            _displayFpsToggle.SetValue(settings.DisplayFPS);
+            _displayTimeToggle.SetValue(settings.DisplayTime);
         }
 
         private void OnLanguageChangedCallback(LocalizationSystem.Language language)

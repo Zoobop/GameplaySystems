@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CurrentLanguage>k__BackingField: 0
   <ResolutionIndex>k__BackingField: 0
-  <WindowMode>k__BackingField: 2
+  <WindowMode>k__BackingField: 0
   <Gamma>k__BackingField: 0.5
   <MasterVolume>k__BackingField: 0.5
   <MainMenuVolume>k__BackingField: 0.5

@@ -6,6 +6,13 @@ namespace Settings
     using LocalizationSystem;
     using InputSystem;
 
+    public enum ScreenView
+    {
+        FullscreenWindowed,
+        Fullscreen,
+        Windowed
+    }
+    
     public class SettingsController : MonoBehaviour
     {
         public static SettingsController Instance { get; private set; }
@@ -17,7 +24,7 @@ namespace Settings
         /* GRAPHICS */
         [field: Header("Graphics Settings")]
         [field: SerializeField] public int ResolutionIndex { get; set; } = 0;
-        [field: SerializeField] public FullScreenMode WindowMode { get; set; } = FullScreenMode.MaximizedWindow;
+        [field: SerializeField] public ScreenView WindowMode { get; set; } = ScreenView.FullscreenWindowed;
         [field: SerializeField, Range(0f, 1f)] public float Gamma { get; set; } = 0.5f;
 
         /* AUDIO */
@@ -77,17 +84,27 @@ namespace Settings
         public static void SetResolution(int index)
         {
             Instance.ResolutionIndex = index;
-            var resolution = Screen.resolutions[index];
-            Screen.SetResolution(resolution.width, resolution.height, Instance.WindowMode);
+            var resolution = Screen.resolutions[Screen.resolutions.Length - 1 - index];
+
+            var fullscreen = Instance.WindowMode is ScreenView.Fullscreen or ScreenView.FullscreenWindowed;
+            Screen.SetResolution(resolution.width, resolution.height, fullscreen);
         }
         
         public static void SetWindowMode(int index)
         {
-            if (index == 2)
-                ++index;
-            
-            Instance.WindowMode = (FullScreenMode) index;
-            Screen.fullScreenMode = Instance.WindowMode;
+            Instance.WindowMode = (ScreenView) index;
+            var screenView = index switch
+            {
+                0 => FullScreenMode.FullScreenWindow,
+                #if PLATFORM_STANDALONE_WIN
+                1 => FullScreenMode.MaximizedWindow,
+                #elif PLATFORM_STANDALONE_OSX
+                1 => FullScreenMode.ExclusiveFullScreen,
+                #endif
+                2 => FullScreenMode.Windowed,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            Screen.fullScreenMode = screenView;
         }
 
         public static void SetGamma(float gamma)
@@ -98,8 +115,9 @@ namespace Settings
         
         private static void ApplyGraphicsSettings()
         {
-            Screen.fullScreenMode = Instance.WindowMode;
-            Screen.brightness = Instance.Gamma;
+            SetResolution(Instance.ResolutionIndex);
+            SetWindowMode((int)Instance.WindowMode);
+            SetGamma(Instance.Gamma);
         }
 
         #endregion

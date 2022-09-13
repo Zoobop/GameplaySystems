@@ -67,19 +67,19 @@ namespace UI
                 resolutions.Add($"{resolution.width}x{resolution.height}");
             }
             
-            WindowOptions.Add(Fullscreen);
             WindowOptions.Add(FullscreenWindowed);
+            WindowOptions.Add(Fullscreen);
             WindowOptions.Add(Windowed);
 
+            var settings = SettingsController.Instance;
+            
             // UI Setup
             _resolutionDropdown.SetOptions(resolutions);
             _resolutionDropdown.Apply();
             _screenViewDropdown.SetOptions(WindowOptions);
-            _screenViewDropdown.Apply();
+            _screenViewDropdown.Apply((int)settings.WindowMode);
             _gammaSlider.SetBounds(0, 1);
-            
-            var settings = SettingsController.Instance;
-            
+
             // Set default values
             _resolutionDropdown.SetValue(settings.ResolutionIndex);
             _screenViewDropdown.SetValue((int)settings.WindowMode);
@@ -90,7 +90,9 @@ namespace UI
 
         private void OnLanguageChangedCallback(LocalizationSystem.Language language)
         {
+            var settings = SettingsController.Instance;
             _screenViewDropdown.SetOptions(WindowOptions);
+            _screenViewDropdown.Apply((int)settings.WindowMode);
         }
         
         #region ApplySettings
